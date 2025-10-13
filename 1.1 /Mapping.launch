@@ -1,0 +1,59 @@
+<launch>
+    <include file="$(find freenect_launch)/launch/freenect.launch">
+        <arg name="depth_registration" value="true" />
+    </include>
+
+    <node pkg="depthimage_to_laserscan" type="depthimage_to_laserscan" name="depthimage_to_laserscan" >
+        <remap from="image"       to="/camera/depth_registered/image_raw"/>
+        <remap from="camera_info" to="/camera/depth_registered/camera_info"/>
+        <remap from="scan"        to="/scan"/>
+        
+        <param name="scan_height"     type="int"    value="20"/>
+        <param name="scan_time"       type="double" value="0.033"/>
+        <param name="range_min"       type="double" value="0.45"/>
+        <param name="range_max"       type="double" value="10.0"/>
+        <param name="output_frame_id" type="str"    value="camera_depth_frame"/>
+    </node>
+
+    <arg name="model" default="$(find witress_bot)/description/robot.urdf.xacro"/>
+    <param name="robot_description" command="$(find xacro)/xacro $(arg model)" />
+    <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" />
+
+    <node pkg="tf" type="static_transform_publisher" name="image_to_scan_broadcaster" args="0 0 0 0 0 0 /camera_depth_frame camera 100" />
+    <node pkg="tf" type="static_transform_publisher" name="camera_optical" args="-0 0 0.83 0 0 0 /base_link /camera_link 100" />
+
+    <node pkg="gmapping" type="slam_gmapping" name="slam_gmapping" output="screen">
+        <param name="base_frame" value="base_link"/>
+        <param name="odom_frame" value="odom"/>
+        <param name="map_update_interval" value="5.0"/>
+        <param name="maxUrange" value="6.0"/>
+        <param name="sigma" value="0.05"/>
+        <param name="kernelSize" value="1"/>
+        <param name="lstep" value="0.05"/>
+        <param name="astep" value="0.05"/>
+        <param name="iterations" value="5"/>
+        <param name="lsigma" value="0.075"/>
+        <param name="ogain" value="3.0"/>
+        <param name="lskip" value="0"/>
+        <param name="srr" value="0.1"/>
+        <param name="srt" value="0.2"/>
+        <param name="str" value="0.1"/>
+        <param name="stt" value="0.2"/>
+        <param name="linearUpdate" value="0.5"/>
+        <param name="angularUpdate" value="0.5"/>
+        <param name="temporalUpdate" value="3.0"/>
+        <param name="resampleThreshold" value="0.5"/>
+        <param name="particles" value="30"/>
+        <param name="xmin" value="-10.0"/>
+        <param name="ymin" value="-10.0"/>
+        <param name="xmax" value="10.0"/>
+        <param name="ymax" value="10.0"/>
+        <param name="delta" value="0.05"/>
+        <param name="llsamplerange" value="0.01"/>
+        <param name="llsamplestep" value="0.01"/>
+        <param name="lasamplerange" value="0.005"/>
+        <param name="lasamplestep" value="0.005"/>
+    </node>
+
+    <node name="rviz" pkg="rviz" type="rviz" args="-d $(find autonomus_mobile_robot)/config/mapping_config.rviz"/>
+</launch>
