@@ -1,0 +1,9 @@
+RLException: error loading <rosparam> tag: 
+	file /home/iascr/catkin_ws/src/autonomus_mobile_robot/config/gmapping_params.yaml contains invalid YAML:
+expected '<document start>', but found '<block mapping start>'
+  in "<unicode string>", line 6, column 1:
+    base_frame: base_link
+    ^
+XML is <rosparam command="load" file="$(find autonomus_mobile_robot)/config/gmapping_params.yaml"/>
+The traceback for the exception was written to the log file
+
