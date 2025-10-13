@@ -1,0 +1,40 @@
+# --- Parameter yang Diubah untuk Peta Lebih Cepat dan Detail ---
+map_update_interval: 0.5   # Perbarui peta setiap 0.5 detik (sebelumnya 2.0). Membuat peta terasa lebih real-time.
+linearUpdate: 0.2          # Lakukan pembaruan setiap robot bergerak maju 20 cm (sebelumnya 1.0 m). Ini KUNCI untuk peta yang lebih detail.
+angularUpdate: 0.1         # Lakukan pembaruan setiap robot berputar ~5.7 derajat (sebelumnya 0.2 rad). Meningkatkan detail saat berbelok.
+particles: 300             # Tingkatkan jumlah "hipotesis" posisi robot. Ini KUNCI untuk mengurangi masalah "lupa posisi".
+resampleThreshold: 0.5     # Biarkan standar, sudah cukup baik.
+temporalUpdate: -1.0       # Nonaktifkan pembaruan berbasis waktu, kita fokus pada pembaruan berbasis pergerakan.
+
+# --- Parameter untuk Akurasi & Tuning ---
+maxUrange: 3.5             # Jarak maksimal sensor yang digunakan. Sesuaikan jika jangkauan Kinect Anda berbeda.
+minimumScore: 200          # Skor minimum kecocokan scan. Menaikkan ini membuat filter lebih 'ketat' dan menolak scan yang buruk.
+
+# --- Parameter yang umumnya tidak perlu diubah ---
+sigma: 0.05
+kernelSize: 1
+lstep: 0.05
+astep: 0.05
+iterations: 5
+lsigma: 0.075
+ogain: 3.0
+lskip: 0
+
+# --- Parameter Model Gerak (Error Odometry) ---
+# Sesuaikan nilai ini jika Anda merasa odometri dari roda sangat tidak akurat.
+# Semakin besar nilainya, semakin gmapping tidak percaya pada odometri.
+srr: 0.1
+srt: 0.2
+str: 0.1
+stt: 0.2
+
+# --- Ukuran Peta dan Resolusi ---
+xmin: -15.0
+ymin: -15.0
+xmax: 15.0
+ymax: 15.0
+delta: 0.05                # Resolusi peta 5cm. Turunkan ke 0.025 untuk peta yang SANGAT detail (butuh lebih banyak CPU).
+llsamplerange: 0.01
+llsamplestep: 0.01
+lasamplerange: 0.005
+lasamplestep: 0.005
