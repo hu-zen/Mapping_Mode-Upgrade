@@ -1,5 +1,4 @@
-<!--catkin_ws/src/autonomus_mobile_robot/config/gmapping_params.yaml-->
-  # Konfigurasi GMapping yang Dioptimalkan untuk Pemetaan Lebih Cepat dan Detail
+# Konfigurasi GMapping yang Dioptimalkan untuk Pemetaan Lebih Cepat dan Detail
 # Berdasarkan input dari Kinect yang sudah diperkaya datanya.
 
 # Frame yang digunakan
@@ -9,24 +8,25 @@ map_frame: map
 
 # ---- Parameter Kunci untuk Performa ----
 
-# Seberapa sering peta diperbarui. Nilai lebih rendah = lebih sering update.
-# Coba turunkan dari 5.0 ke 2.5 agar peta lebih cepat terbentuk.
+# Seberapa sering peta diperbarui (detik). Nilai lebih rendah = lebih sering & lebih cepat terlihat hasilnya.
 map_update_interval: 2.5
 
 # Jumlah partikel Monte Carlo. Ini adalah trade-off antara akurasi dan beban CPU.
 # Dengan data laser yang lebih padat, kita tidak perlu partikel terlalu banyak.
-# 40-80 adalah titik awal yang baik. Default-nya seringkali 30.
+# 50 adalah titik awal yang baik.
 particles: 50
 
 # ---- Kapan SLAM melakukan pembaruan ----
 # Ini mencegah update yang terlalu sering jika robot hanya bergerak sedikit.
-linearUpdate: 0.3  # Update jika robot bergerak maju/mundur sejauh 30 cm
+linearUpdate: 0.2  # Update jika robot bergerak maju/mundur sejauh 20 cm
 angularUpdate: 0.2 # Update jika robot berputar sejauh 0.2 radian (~11.5 derajat)
 
 # ---- Parameter Sensor Laser ----
-# Jarak maksimum dari sensor yang akan diproses. Sesuaikan jika perlu.
-maxUrange: 8.0
+maxUrange: 8.0 # Jarak maksimum dari sensor yang akan diproses. Sesuaikan jika perlu.
 maxRange: 10.0
+
+# ---- Resolusi Peta ----
+delta: 0.05 # Resolusi peta (5 cm per sel), ini sudah standar dan baik.
 
 # ---- Parameter Internal GMapping (umumnya tidak perlu diubah) ----
 sigma: 0.05
@@ -37,17 +37,16 @@ iterations: 5
 lsigma: 0.075
 ogain: 3.0
 lskip: 0
-srr: 0.1
-srt: 0.2
-str: 0.1
-stt: 0.2
+srr: 0.01   # Error odometri dari gerak rotasi->rotasi
+srt: 0.02   # Error odometri dari gerak translasi->rotasi
+str: 0.01   # Error odometri dari gerak rotasi->translasi
+stt: 0.02   # Error odometri dari gerak translasi->translasi
 temporalUpdate: -1.0 # -1.0 berarti update hanya berdasarkan gerakan (linear/angularUpdate)
 resampleThreshold: 0.5
 xmin: -15.0 # Perluas sedikit ukuran awal peta
 ymin: -15.0
 xmax: 15.0
 ymax: 15.0
-delta: 0.05 # Resolusi peta (5 cm per sel), ini sudah standar dan baik
 llsamplerange: 0.01
 llsamplestep: 0.01
 lasamplerange: 0.005
