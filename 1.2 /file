@@ -1,0 +1,48 @@
+[ WARN] [1760347081.711251186]: The time difference between rgb and depth frames is high (diff=0.010838s, rgb=1760347081.675301s, depth=1760347081.686139s). You may want to set approx_sync_max_interval lower than 0.01s to reject spurious bad synchronizations or use approx_sync=false if streams have all the exact same timestamp.
+Scan Matching Failed, using odometry. Likelihood=-488.587
+lp:1.66634 0.694958 -0.39495
+op:1.83704 0.876181 0.229876
+[ INFO] [1760347081.748043724]: Odom: quality=133, std dev=0.005054m|0.021486rad, update time=0.046816s
+[ INFO] [1760347081.797888312]: Odom: quality=134, std dev=0.001794m|0.017944rad, update time=0.048378s
+[ WARN] [1760347081.811807000]: The time difference between rgb and depth frames is high (diff=0.010619s, rgb=1760347081.775287s, depth=1760347081.785906s). You may want to set approx_sync_max_interval lower than 0.01s to reject spurious bad synchronizations or use approx_sync=false if streams have all the exact same timestamp.
+[ INFO] [1760347081.851411573]: Odom: quality=117, std dev=0.002543m|0.021036rad, update time=0.052719s
+[ INFO] [1760347081.900351356]: Odom: quality=98, std dev=0.002684m|0.022437rad, update time=0.047523s
+[ WARN] [1760347081.911477980]: The time difference between rgb and depth frames is high (diff=0.010482s, rgb=1760347081.875280s, depth=1760347081.885762s). You may want to set approx_sync_max_interval lower than 0.01s to reject spurious bad synchronizations or use approx_sync=false if streams have all the exact same timestamp.
+[ INFO] [1760347081.955225574]: Odom: quality=109, std dev=0.004006m|0.023937rad, update time=0.053910s
+[ WARN] [1760347082.011583736]: The time difference between rgb and depth frames is high (diff=0.010075s, rgb=1760347081.975368s, depth=1760347081.985444s). You may want to set approx_sync_max_interval lower than 0.01s to reject spurious bad synchronizations or use approx_sync=false if streams have all the exact same timestamp.
+[ INFO] [1760347082.011604199]: Odom: quality=91, std dev=0.003255m|0.024831rad, update time=0.055462s
+[ INFO] [1760347082.063604566]: Odom: quality=108, std dev=0.004111m|0.022437rad, update time=0.050781s
+[ WARN] (2025-10-13 17:18:02.105) OdometryF2M.cpp:561::computeTransform() Registration failed: "Too low inliers after bundle adjustment: 18<20" (guess=xyz=-0.001211,-0.025883,0.000953 rpy=-0.006077,-0.001266,-0.023466)
+[ WARN] (2025-10-13 17:18:02.105) OdometryF2M.cpp:309::computeTransform() Failed to find a transformation with the provided guess (xyz=-0.001211,-0.025883,0.000953 rpy=-0.006077,-0.001266,-0.023466), trying again without a guess.
+[ WARN] [1760347082.111088614]: The time difference between rgb and depth frames is high (diff=0.010133s, rgb=1760347082.075338s, depth=1760347082.085471s). You may want to set approx_sync_max_interval lower than 0.01s to reject spurious bad synchronizations or use approx_sync=false if streams have all the exact same timestamp.
+[ WARN] (2025-10-13 17:18:02.152) OdometryF2M.cpp:551::computeTransform() Trial with no guess still fail.
+[ WARN] (2025-10-13 17:18:02.152) OdometryF2M.cpp:561::computeTransform() Registration failed: "Not enough inliers 17/20 (matches=59) between -1 and 1537" (guess=xyz=-0.001211,-0.025883,0.000953 rpy=-0.006077,-0.001266,-0.023466)
+[ INFO] [1760347082.153287031]: Odom: quality=17, std dev=0.000000m|0.000000rad, update time=0.088670s
+[ WARN] (2025-10-13 17:18:02.213) OdometryF2M.cpp:557::computeTransform() Registration failed: "Not enough inliers 10/20 (matches=43) between -1 and 1538"
+[ INFO] [1760347082.213533343]: Odom: quality=10, std dev=0.000000m|0.000000rad, update time=0.059196s
+[ WARN] (2025-10-13 17:18:02.281) OdometryF2M.cpp:557::computeTransform() Registration failed: "Not enough inliers 12/20 (matches=85) between -1 and 1539"
+[ INFO] [1760347082.281615758]: Odom: quality=12, std dev=0.000000m|0.000000rad, update time=0.067400s
+Scan Matching Failed, using odometry. Likelihood=-488.375
+lp:1.66634 0.694958 -0.39495
+op:1.83704 0.876181 0.229876
+[ WARN] (2025-10-13 17:18:02.344) OdometryF2M.cpp:557::computeTransform() Registration failed: "Not enough inliers 0/20 (matches=85) between -1 and 1540"
+[ INFO] [1760347082.345407797]: Odom: quality=0, std dev=0.000000m|0.000000rad, update time=0.062943s
+[ WARN] [1760347082.411487795]: The time difference between rgb and depth frames is high (diff=0.010394s, rgb=1760347082.375364s, depth=1760347082.385758s). You may want to set approx_sync_max_interval lower than 0.01s to reject spurious bad synchronizations or use approx_sync=false if streams have all the exact same timestamp.
+[ WARN] (2025-10-13 17:18:02.416) OdometryF2M.cpp:557::computeTransform() Registration failed: "Not enough inliers 0/20 (matches=46) between -1 and 1541"
+[ INFO] [1760347082.417403605]: Odom: quality=0, std dev=0.000000m|0.000000rad, update time=0.070767s
+Scan Matching Failed, using odometry. Likelihood=-488.602
+lp:1.66634 0.694958 -0.39495
+op:1.83704 0.876181 0.229876
+[ WARN] (2025-10-13 17:18:02.503) OdometryF2M.cpp:557::computeTransform() Registration failed: "Not enough inliers 16/20 (matches=121) between -1 and 1542"
+[ INFO] [1760347082.504417595]: Odom: quality=16, std dev=0.000000m|0.000000rad, update time=0.085985s
+[ WARN] [1760347082.511058595]: The time difference between rgb and depth frames is high (diff=0.010649s, rgb=1760347082.475442s, depth=1760347082.486091s). You may want to set approx_sync_max_interval lower than 0.01s to reject spurious bad synchronizations or use approx_sync=false if streams have all the exact same timestamp.
+[ WARN] [1760347082.545232046]: The time difference between rgb and depth frames is high (diff=0.010364s, rgb=1760347082.509334s, depth=1760347082.519698s). You may want to set approx_sync_max_interval lower than 0.01s to reject spurious bad synchronizations or use approx_sync=false if streams have all the exact same timestamp.
+Scan Matching Failed, using odometry. Likelihood=-488.397
+lp:1.66634 0.694958 -0.39495
+op:1.83704 0.876181 0.229876
+[ WARN] (2025-10-13 17:18:02.584) OdometryF2M.cpp:557::computeTransform() Registration failed: "Not enough inliers 19/20 (matches=74) between -1 and 1543"
+[ INFO] [1760347082.585207082]: Odom: quality=19, std dev=0.000000m|0.000000rad, update time=0.079579s
+[ WARN] [1760347082.611766213]: The time difference between rgb and depth frames is high (diff=0.011070s, rgb=1760347082.575402s, depth=1760347082.586472s). You may want to set approx_sync_max_interval lower than 0.01s to reject spurious bad synchronizations or use approx_sync=false if streams have all the exact same timestamp.
+[ WARN] [1760347082.645371643]: The time difference between rgb and depth frames is high (diff=0.010319s, rgb=1760347082.609448s, depth=1760347082.619767s). You may want to set approx_sync_max_interval lower than 0.01s to reject spurious bad synchronizations or use approx_sync=false if streams have all the exact same timestamp.
+[ WARN] (2025-10-13 17:18:02.660) OdometryF2M.cpp:557::computeTransform() Registration failed: "Not enough inliers 7/20 (matches=78) between -1 and 1544"
+[ INFO] [1760347082.661055152]: Odom: quality=7, std dev=0.000000m|0.000000rad, update time=0.074478s
