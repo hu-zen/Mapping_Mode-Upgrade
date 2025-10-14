@@ -1,34 +1,15 @@
-# Konfigurasi GMapping yang Dioptimalkan untuk Pemetaan Lebih Cepat dan Detail
-# Berdasarkan input dari Kinect yang sudah diperkaya datanya.
+# --- Parameter Kunci yang Disesuaikan untuk Keseimbangan ---
+maxUrange: 4.5
+map_update_interval: 0.5
+linearUpdate: 0.2
+angularUpdate: 0.1
+lskip: 2
+particles: 150
 
-# Frame yang digunakan
-base_frame: base_link
-odom_frame: odom
-map_frame: map
+# --- PERUBAHAN UTAMA UNTUK UPDATE SETIAP DETIK ---
+temporalUpdate: 1.0        # DIUBAH: Paksa gmapping untuk memproses data baru setidaknya setiap 1.0 detik, meskipun robot tidak bergerak.
 
-# ---- Parameter Kunci untuk Performa ----
-
-# Seberapa sering peta diperbarui (detik). Nilai lebih rendah = lebih sering & lebih cepat terlihat hasilnya.
-map_update_interval: 2.5
-
-# Jumlah partikel Monte Carlo. Ini adalah trade-off antara akurasi dan beban CPU.
-# Dengan data laser yang lebih padat, kita tidak perlu partikel terlalu banyak.
-# 50 adalah titik awal yang baik.
-particles: 50
-
-# ---- Kapan SLAM melakukan pembaruan ----
-# Ini mencegah update yang terlalu sering jika robot hanya bergerak sedikit.
-linearUpdate: 0.2  # Update jika robot bergerak maju/mundur sejauh 20 cm
-angularUpdate: 0.2 # Update jika robot berputar sejauh 0.2 radian (~11.5 derajat)
-
-# ---- Parameter Sensor Laser ----
-maxUrange: 8.0 # Jarak maksimum dari sensor yang akan diproses. Sesuaikan jika perlu.
-maxRange: 10.0
-
-# ---- Resolusi Peta ----
-delta: 0.05 # Resolusi peta (5 cm per sel), ini sudah standar dan baik.
-
-# ---- Parameter Internal GMapping (umumnya tidak perlu diubah) ----
+# --- Parameter Lainnya (biarkan seperti ini) ---
 sigma: 0.05
 kernelSize: 1
 lstep: 0.05
@@ -36,17 +17,17 @@ astep: 0.05
 iterations: 5
 lsigma: 0.075
 ogain: 3.0
-lskip: 0
-srr: 0.01   # Error odometri dari gerak rotasi->rotasi
-srt: 0.02   # Error odometri dari gerak translasi->rotasi
-str: 0.01   # Error odometri dari gerak rotasi->translasi
-stt: 0.02   # Error odometri dari gerak translasi->translasi
-temporalUpdate: -1.0 # -1.0 berarti update hanya berdasarkan gerakan (linear/angularUpdate)
+minimumScore: 100
+srr: 0.1
+srt: 0.2
+str: 0.1
+stt: 0.2
 resampleThreshold: 0.5
-xmin: -15.0 # Perluas sedikit ukuran awal peta
+xmin: -15.0
 ymin: -15.0
 xmax: 15.0
 ymax: 15.0
+delta: 0.05
 llsamplerange: 0.01
 llsamplestep: 0.01
 lasamplerange: 0.005
