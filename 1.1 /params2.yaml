@@ -1,0 +1,59 @@
+# =======================================================================================
+# PENGEMBANGAN gmapping_params.yaml UNTUK STABILITAS DAN AKURASI
+# Berdasarkan file asli yang sudah terbukti berhasil.
+# =======================================================================================
+
+# Seberapa sering peta diperbarui (detik). Nilai 2.0 sudah cukup baik.
+map_update_interval: 2.0
+
+# Jarak maksimal sensor yang akan diproses.
+# PENGEMBANGAN: Nilai 3.0 mungkin terlalu pendek untuk Kinect. Kita tingkatkan menjadi 5.0 meter.
+# Ini sangat penting agar robot bisa "melihat" dinding yang lebih jauh untuk menjaga posisinya tetap akurat.
+maxUrange: 5.0
+
+# Skor minimum yang diperlukan untuk menerima sebuah pencocokan scan.
+# PENGEMBANGAN: Kita naikkan dari 50 menjadi 80 agar gmapping lebih "yakin"
+# sebelum menerima posisi baru. Ini membantu mengurangi frame yang buruk saat robot ragu.
+minimumScore: 80
+
+# ---- Kapan SLAM melakukan pembaruan (BAGIAN PALING PENTING) ----
+
+# PENGEMBANGAN KRUSIAL: Nilai 1.0 (1 meter) terlalu besar dan menjadi penyebab utama robot "lupa posisi".
+# Kita ubah menjadi 0.2 (20 cm), sehingga filter akan lebih sering mengoreksi posisinya berdasarkan data laser saat bergerak.
+linearUpdate: 0.2
+
+# Nilai 0.2 radian (~11.5 derajat) sudah bagus untuk update saat berputar.
+angularUpdate: 0.2
+
+# PENGEMBANGAN: Karena linearUpdate sudah kita buat lebih sering, update berbasis waktu tidak perlu terlalu agresif.
+# Kita ubah dari 0.5 menjadi 1.0 (update setiap 1 detik jika robot diam). Ini mengurangi beban CPU saat robot tidak bergerak.
+temporalUpdate: 1.0
+
+# ---- Parameter Partikel (Untuk Stabilitas) ----
+
+# Jumlah partikel. 100 sudah cukup baik, tidak perlu diubah kecuali jika masalah masih berlanjut.
+particles: 100
+
+# ---- Parameter Lainnya (dipertahankan dari file asli Anda) ----
+sigma: 0.05
+kernelSize: 1
+lstep: 0.05
+astep: 0.05
+iterations: 5
+lsigma: 0.075
+ogain: 3.0
+lskip: 0
+srr: 0.1
+srt: 0.2
+str: 0.1
+stt: 0.2
+resampleThreshold: 0.5
+xmin: -10.0
+ymin: -10.0
+xmax: 10.0
+ymax: 10.0
+delta: 0.05
+llsamplerange: 0.01
+llsamplestep: 0.01
+lasamplerange: 0.005
+lasamplestep: 0.005
