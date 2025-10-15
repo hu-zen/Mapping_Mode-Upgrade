@@ -1,0 +1,66 @@
+# =======================================================================================
+# PENGEMBANGAN DWA LOCAL PLANNER UNTUK MENGHILANGKAN GOYANGAN DI DEKAT GOAL
+# =======================================================================================
+
+# Robot Configuration Parameters
+# Batas kecepatan dan akselerasi robot. Nilai-nilai ini bisa disesuaikan dengan kemampuan fisik robot Anda.
+# Jika gerakan terasa terlalu agresif atau tersentak-sentak, Anda bisa mengurangi nilai 'acc_lim'.
+max_vel_x: 0.4
+min_vel_x: 0.1 # Penting: Jangan set ke 0 agar robot tidak berhenti tiba-tiba saat ada rintangan kecil.
+
+max_vel_y: 0.0  # Untuk robot non-holonomic (seperti mobil), ini harus 0.
+min_vel_y: 0.0
+
+max_trans_vel: 0.4  # Kecepatan translasi (lurus) maksimum.
+min_trans_vel: 0.1
+
+max_rot_vel: 1.0    # Kecepatan rotasi (berputar) maksimum.
+min_rot_vel: 0.2    # Kecepatan rotasi minimum. Nilai yang lebih kecil memungkinkan putaran yang lebih halus.
+
+acc_lim_x: 2.5
+acc_lim_y: 0.0
+acc_lim_theta: 3.2
+
+# =======================================================================================
+# PENGEMBANGAN UTAMA ADA DI SINI
+# =======================================================================================
+# Goal Tolerance Parameters
+# Memberikan toleransi agar robot tidak perlu 100% presisi.
+
+# Toleransi Posisi (X dan Y) dalam meter.
+# Jika robot berada dalam radius 0.2 meter dari titik tujuan, maka dianggap sudah sampai.
+# Ini persis seperti yang Anda minta (9,8 dianggap sudah sampai di 10).
+xy_goal_tolerance: 0.2
+
+# Toleransi Sudut (Yaw) dalam radian.
+# 0.17 radian kira-kira 10 derajat. Artinya, robot tidak perlu menghadap dengan sempurna
+# ke arah tujuan akhir, selama masih dalam rentang toleransi ini.
+yaw_goal_tolerance: 0.17
+
+# Jika 'true', robot akan mencoba mencapai toleransi xy bahkan jika sudah melewati tujuan.
+# Kita set 'false' agar robot berhenti begitu toleransi tercapai.
+latch_xy_goal_tolerance: false
+# =======================================================================================
+
+# Forward Simulation Parameters
+# Seberapa jauh ke depan (dalam detik) planner akan menyimulasikan pergerakan.
+# Nilai yang lebih besar membuat gerakan lebih mulus, nilai lebih kecil membuat lebih reaktif. 2.0 adalah nilai yang baik.
+sim_time: 2.0
+vx_samples: 20
+vy_samples: 0 # Untuk robot non-holonomic
+vtheta_samples: 40
+
+# Trajectory Scoring Parameters
+# Parameter ini menyeimbangkan antara "mengikuti jalur" vs "langsung ke tujuan".
+# Nilai ini cukup seimbang dan tidak perlu diubah kecuali jika robot sering memotong tikungan terlalu banyak.
+path_distance_bias: 32.0
+goal_distance_bias: 24.0
+occdist_scale: 0.02
+forward_point_distance: 0.325
+stop_time_buffer: 0.2
+scaling_speed: 0.25
+max_scaling_factor: 0.2
+
+# Oscillation Prevention Parameters
+# Parameter ini membantu robot keluar jika terjebak dalam gerakan maju-mundur.
+oscillation_reset_dist: 0.05
