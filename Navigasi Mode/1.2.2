@@ -1,0 +1,32 @@
+TrajectoryPlannerROS:
+
+# Robot Configuration Parameters (Tidak Diubah)
+  max_vel_x: 0.18
+  min_vel_x: 0.08
+
+  max_vel_theta:  1.0
+  min_vel_theta: -1.0
+  min_in_place_vel_theta: 1.0
+
+  acc_lim_x: 1.0
+  acc_lim_y: 0.0
+  acc_lim_theta: 0.6
+
+# ======================= BAGIAN PERBAIKAN =======================
+# Goal Tolerance Parameters
+  xy_goal_tolerance: 0.20      # DIUBAH: Toleransi jarak "lingkaran" 20 cm, sesuai permintaan.
+  yaw_goal_tolerance: 0.30     # DIUBAH: Toleransi sudut dilonggarkan menjadi ~17 derajat untuk mencegah goyangan.
+
+  # PERUBAHAN KUNCI: Mengaktifkan mode "lingkaran".
+  # Setelah masuk radius 20cm, robot akan berhenti maju/mundur dan hanya akan berputar di tempat.
+  latch_xy_goal_tolerance: true
+# ================================================================
+
+# Differential-drive robot configuration (Tidak Diubah)
+  holonomic_robot: false
+
+# Forward Simulation Parameters (Tidak Diubah)
+  sim_time: 0.8
+  vx_samples: 18
+  vtheta_samples: 20
+  sim_granularity: 0.05
