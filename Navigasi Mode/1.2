@@ -1,0 +1,32 @@
+TrajectoryPlannerROS:
+  # Robot Configuration Parameters
+  acc_lim_x: 1.0
+  acc_lim_y: 0.0 # diff drive robot
+  acc_lim_theta: 2.0
+
+  max_vel_x: 0.5
+  min_vel_x: 0.1
+  max_vel_y: 0.0 # diff drive robot
+  min_vel_y: 0.0 # diff drive robot
+  max_vel_theta: 1.0
+  min_vel_theta: -1.0
+  min_in_place_vel_theta: 0.4
+
+  # Goal Tolerance Parameters
+  xy_goal_tolerance: 0.20  # DIUBAH: Toleransi jarak 20 cm, sesuai permintaan Anda.
+  yaw_goal_tolerance: 0.30 # DIUBAH: Toleransi sudut 0.3 rad (~17 derajat). Ini akan sangat mengurangi "goyangan".
+
+  # Forward Simulation Parameters
+  sim_time: 1.5
+  vx_samples: 3
+  vy_samples: 1
+  vtheta_samples: 20
+  
+  # Trajectory Scoring Parameters
+  path_distance_bias: 32.0
+  goal_distance_bias: 24.0
+  occdist_scale: 0.01
+  
+  # Other Parameters
+  holonomic_robot: false
+  meter_scoring: true
