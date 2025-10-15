@@ -1,35 +1,32 @@
 # =======================================================================================
-# PENGEMBANGAN gmapping_params.yaml UNTUK MENGATASI FREEZE DI SUDUT/UJUNG
+# PENGEMBANGAN gmapping_params.yaml UNTUK DETAIL DAN STABILITAS POSISI
 # =======================================================================================
 
-# Frekuensi update peta di RViz (detik).
-map_update_interval: 2.0
+# ---- Frekuensi & Jangkauan ----
+map_update_interval: 1.5  # PERBAIKAN: Update peta di RViz setiap 1.5 detik agar lebih responsif.
+maxUrange: 6.0            # PERBAIKAN: Jangkauan sensor diperluas hingga 6 meter agar tidak "lupa posisi" di ruang terbuka.
 
-# Jangkauan sensor maksimum yang diproses (meter).
-maxUrange: 5.0 # Dipertahankan pada 5m untuk performa baik di ruang terbuka.
+# ---- Kapan SLAM Melakukan Update (PERBAIKAN PALING KRUSIAL) ----
+# PENGEMBANGAN: Diubah dari 1.0 menjadi 0.1 (10 cm). Robot akan mengoreksi posisinya
+# setiap kali bergerak 10 cm. Ini adalah solusi utama untuk masalah "lupa posisi".
+linearUpdate: 0.1
 
-# ---- PERBAIKAN UTAMA UNTUK MASALAH FREEZE ----
+# PENGEMBANGAN: Diubah dari 0.2 menjadi 0.1 (~5.7 derajat). Robot akan update
+# bahkan pada belokan kecil, yang sering menjadi sumber error.
+angularUpdate: 0.1
 
-# Skor minimum yang diperlukan untuk menerima sebuah pencocokan scan.
-# PENGEMBANGAN: Nilai asli Anda (50) terlalu tinggi untuk situasi di sudut.
-# Kita turunkan menjadi 20. Ini membuat gmapping lebih toleran dan mau menerima
-# update peta bahkan jika hasil pencocokan lasernya kurang sempurna.
-# INI ADALAH PERBAIKAN KUNCI UNTUK MASALAH ANDA.
-minimumScore: 20
+# Update setiap 1 detik jika robot tidak bergerak.
+temporalUpdate: 1.0
 
-# ---- Parameter Partikel ----
-# Jumlah partikel yang digunakan untuk menebak posisi robot.
-# PENGEMBANGAN: Kita naikkan dari 100 menjadi 120.
-# Dengan lebih banyak "tebakan", kemungkinan gmapping menemukan posisi yang benar
-# di area yang sulit (seperti sudut) menjadi lebih besar.
-particles: 120
+# ---- Kepercayaan & Stabilitas ----
+# Skor minimum untuk menerima scan match. Kita turunkan sedikit agar tidak mudah "freeze" di sudut.
+minimumScore: 40
 
-# ---- Parameter Update (dipertahankan untuk stabilitas) ----
-linearUpdate: 0.2
-angularUpdate: 0.2
-temporalUpdate: 1.0 # Update setiap 1 detik jika robot diam.
+# PENGEMBANGAN: Dinaikkan menjadi 150. Dengan lebih banyak partikel (hipotesis posisi),
+# gmapping memiliki peluang lebih besar untuk menemukan posisi yang benar dan tidak "reset".
+particles: 150
 
-# ---- Parameter Internal Gmapping Lainnya (dipertahankan dari file asli Anda) ----
+# ---- Parameter Lainnya (dipertahankan dari file asli Anda) ----
 sigma: 0.05
 kernelSize: 1
 lstep: 0.05
@@ -43,10 +40,10 @@ srt: 0.2
 str: 0.1
 stt: 0.2
 resampleThreshold: 0.5
-xmin: -10.0
-ymin: -10.0
-xmax: 10.0
-ymax: 10.0
+xmin: -15.0
+ymin: -15.0
+xmax: 15.0
+ymax: 15.0
 delta: 0.05
 llsamplerange: 0.01
 llsamplestep: 0.01
