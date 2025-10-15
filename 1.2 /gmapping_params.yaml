@@ -1,32 +1,45 @@
-# --- Parameter Kunci yang Disesuaikan untuk Keseimbangan ---
-maxUrange: 4.5
-map_update_interval: 0.5
-linearUpdate: 0.2
-angularUpdate: 0.1
-lskip: 0                   # Tetap 0 sesuai permintaan Anda untuk detail maksimal.
-temporalUpdate: 1.0        # Tetap update setiap detik.
+# =================== Konfigurasi Agresif untuk Detail dan Stabilitas ===================
 
-# --- PERUBAHAN UTAMA UNTUK SCAN-MATCHING YANG LEBIH GIGIH ---
-particles: 80              # DIUBAH: Jumlah partikel bisa sedikit dikurangi untuk mengimbangi beban komputasi di bawah.
-iterations: 10             # DIUBAH: Paksa algoritma untuk mencoba mencocokkan scan sebanyak 10 kali (sebelumnya 5). Ini membuatnya lebih gigih.
-minimumScore: 20           # DIUBAH: Turunkan ambang batas skor minimum. GMapping akan lebih mudah menerima hasil scan-match meskipun fiturnya sedikit.
+# --- Parameter Update ---
+# Aturan untuk seberapa sering gmapping memproses data baru.
+map_update_interval: 1.0   # Frekuensi update visual peta di RVIZ.
+linearUpdate: 0.1          # Update setiap robot bergerak 10 cm.
+angularUpdate: 0.05        # Update setiap robot berputar ~3 derajat.
+temporalUpdate: 0.5        # Paksa update setidaknya setiap 0.5 detik, meskipun robot diam.
 
-# --- Parameter Lainnya (biarkan seperti ini) ---
+# --- Parameter Kualitas & Performa ---
+maxUrange: 4.0             # Jangkauan efektif sensor yang digunakan.
+lskip: 0                   # Proses SEMUA titik laser untuk detail maksimal (sangat berat).
+
+# --- Parameter Kunci untuk Stabilitas ("Anti Lupa Posisi") ---
+# 'particles' adalah jumlah kemungkinan posisi yang dipertimbangkan gmapping.
+# Semakin banyak, semakin sulit robot "lupa" di mana posisinya.
+particles: 200             # DIUBAH: Ditingkatkan secara signifikan untuk melawan kehilangan posisi.
+
+# --- Parameter untuk Scan Matching (Agar Tidak Gagal di Ujung Lorong) ---
+# Membuat gmapping lebih "gigih" saat mencocokkan scan.
+iterations: 8              # Coba 8 kali untuk menemukan kecocokan.
+minimumScore: 50           # Ambang batas minimum kualitas kecocokan.
+
+# --- Parameter Odometri (Seberapa besar gmapping 'percaya' pada odometri) ---
+# Nilai yang lebih tinggi membuat gmapping lebih skeptis terhadap odometri yang masuk.
+srr: 0.3  # translational error from rotational motion
+srt: 0.4  # rotational error from translational motion
+str: 0.3  # translational error from translational motion
+stt: 0.4  # rotational error from rotational motion
+
+# --- Parameter Lainnya (Umumnya tidak perlu diubah) ---
 sigma: 0.05
 kernelSize: 1
 lstep: 0.05
 astep: 0.05
 lsigma: 0.075
 ogain: 3.0
-srr: 0.1
-srt: 0.2
-str: 0.1
-stt: 0.2
 resampleThreshold: 0.5
-xmin: -15.0
-ymin: -15.0
-xmax: 15.0
-ymax: 15.0
+xmin: -20.0
+ymin: -20.0
+xmax: 20.0
+ymax: 20.0
 delta: 0.05
 llsamplerange: 0.01
 llsamplestep: 0.01
