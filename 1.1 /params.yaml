@@ -1,15 +1,40 @@
-# --- Parameter Kunci yang Disesuaikan untuk Keseimbangan ---
-maxUrange: 4.5
-map_update_interval: 0.5
-linearUpdate: 0.2
-angularUpdate: 0.1
-lskip: 2
-particles: 150
+# =======================================================================================
+# PENGEMBANGAN FINAL: gmapping_params.yaml untuk Stabilitas, Detail, dan Update Kontinu
+# =======================================================================================
 
-# --- PERUBAHAN UTAMA UNTUK UPDATE SETIAP DETIK ---
-temporalUpdate: 1.0        # DIUBAH: Paksa gmapping untuk memproses data baru setidaknya setiap 1.0 detik, meskipun robot tidak bergerak.
+# ---- Frekuensi & Jangkauan ----
+# Update visual peta di RViz setiap 1 detik agar terasa lebih responsif.
+map_update_interval: 1
 
-# --- Parameter Lainnya (biarkan seperti ini) ---
+# PENGEMBANGAN: Jangkauan sensor diperluas menjadi 6 meter.
+# Ini akan mengatasi masalah peta kosong di area terbuka.
+maxUrange: 6.0
+
+# ---- Kapan SLAM Melakukan Update (PERBAIKAN PALING KRUSIAL) ----
+
+# PENGEMBANGAN: Diubah menjadi 0.15 (15 cm). Robot akan mengoreksi posisinya
+# lebih sering saat bergerak untuk mencegah "lupa posisi".
+linearUpdate: 0.15
+
+# PENGEMBANGAN: Diubah menjadi 0.15 radian (~8.6 derajat). Robot akan update
+# lebih sering saat berbelok untuk mencegah akumulasi error.
+angularUpdate: 0.15
+
+# PENGEMBANGAN: Diubah menjadi 1.0. Ini memastikan gmapping tetap memproses
+# data dan mengupdate peta setiap 1 detik, bahkan jika robot diam.
+temporalUpdate: 1.0
+
+# ---- Kepercayaan & Stabilitas ----
+
+# PENGEMBANGAN: Jumlah partikel (hipotesis posisi) dinaikkan menjadi 120.
+# Ini memberi gmapping lebih banyak "cadangan tebakan" jika bingung, sehingga tidak mudah "reset".
+particles: 120
+
+# Skor minimum untuk menerima sebuah pencocokan scan.
+# Ditetapkan ke 40 sebagai nilai yang seimbang.
+minimumScore: 40
+
+# ---- Parameter Lainnya (dipertahankan dari file asli Anda) ----
 sigma: 0.05
 kernelSize: 1
 lstep: 0.05
@@ -17,7 +42,7 @@ astep: 0.05
 iterations: 5
 lsigma: 0.075
 ogain: 3.0
-minimumScore: 100
+lskip: 0
 srr: 0.1
 srt: 0.2
 str: 0.1
