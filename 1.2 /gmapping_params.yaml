@@ -1,34 +1,24 @@
-# =================== Konfigurasi Agresif untuk Detail dan Stabilitas ===================
+map_update_interval: 1.0
+maxUrange: 4.0
+particles: 80
 
-# --- Parameter Update ---
-# Aturan untuk seberapa sering gmapping memproses data baru.
-map_update_interval: 1.0   # Frekuensi update visual peta di RVIZ.
-linearUpdate: 0.1          # Update setiap robot bergerak 10 cm.
-angularUpdate: 0.05        # Update setiap robot berputar ~3 derajat.
-temporalUpdate: 0.5        # Paksa update setidaknya setiap 0.5 detik, meskipun robot diam.
+# Aturan update
+linearUpdate: 0.2
+angularUpdate: 0.1
+temporalUpdate: 0.5
 
-# --- Parameter Kualitas & Performa ---
-maxUrange: 4.0             # Jangkauan efektif sensor yang digunakan.
-lskip: 0                   # Proses SEMUA titik laser untuk detail maksimal (sangat berat).
+# Parameter Scan Matching
+iterations: 8
+lskip: 0
+minimumScore: 50
 
-# --- Parameter Kunci untuk Stabilitas ("Anti Lupa Posisi") ---
-# 'particles' adalah jumlah kemungkinan posisi yang dipertimbangkan gmapping.
-# Semakin banyak, semakin sulit robot "lupa" di mana posisinya.
-particles: 200             # DIUBAH: Ditingkatkan secara signifikan untuk melawan kehilangan posisi.
+# Parameter Error Model Odometri
+srr: 0.1
+srt: 0.2
+str: 0.1
+stt: 0.2
 
-# --- Parameter untuk Scan Matching (Agar Tidak Gagal di Ujung Lorong) ---
-# Membuat gmapping lebih "gigih" saat mencocokkan scan.
-iterations: 8              # Coba 8 kali untuk menemukan kecocokan.
-minimumScore: 50           # Ambang batas minimum kualitas kecocokan.
-
-# --- Parameter Odometri (Seberapa besar gmapping 'percaya' pada odometri) ---
-# Nilai yang lebih tinggi membuat gmapping lebih skeptis terhadap odometri yang masuk.
-srr: 0.3  # translational error from rotational motion
-srt: 0.4  # rotational error from translational motion
-str: 0.3  # translational error from translational motion
-stt: 0.4  # rotational error from rotational motion
-
-# --- Parameter Lainnya (Umumnya tidak perlu diubah) ---
+# Parameter lainnya
 sigma: 0.05
 kernelSize: 1
 lstep: 0.05
