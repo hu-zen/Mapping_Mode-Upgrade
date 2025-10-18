@@ -1,0 +1,1 @@
+ERROR: cannot launch node of type [rtabmap_ros/rtabmap]: Cannot locate node of type [rtabmap] in package [rtabmap_ros]. Make sure file exists in package path and permission is set to executable (chmod +x)
