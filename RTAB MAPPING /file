@@ -1,8 +1,110 @@
-[ERROR] [1760771775.419633330]: filter time older than vo message buffer
-[ WARN] (2025-10-18 15:16:15.448) OdometryF2M.cpp:557::computeTransform() Registration failed: "Not enough features in images (old=1416, new=12, min=20)"
-[ INFO] [1760771775.448915176]: Odom: quality=0, std dev=0.000000m|0.000000rad, update time=0.041930s
-[ERROR] [1760771775.452855383]: filter time older than vo message buffer
-Error:   TF_NAN_INPUT: Ignoring transform for child_frame_id "vo" from authority "default_authority" because of a nan value in the transform (-nan -nan -nan) (-nan -nan -nan -nan)
-         at line 240 in /tmp/binarydeb/ros-noetic-tf2-0.7.6/src/buffer_core.cpp
-Error:   TF_DENORMALIZED_QUATERNION: Ignoring transform for child_frame_id "vo" from authority "default_authority" because of an invalid quaternion in the transform (-nan -nan -nan -nan)
-         at line 255 in /tmp/binarydeb/ros-noetic-tf2-0.7.6/src/buffer_core.cpp
+<?xml version="1.0"?>
+<robot name="mobile_robot" xmlns:xacro="http://ros.org/wiki/xacro">
+
+  <link name="base_link">
+    <visual>
+      <geometry>
+        <box size="0.001 0.001 0.001"/>
+      </geometry>
+    </visual>
+  </link>
+
+  <joint name="base_plate_joint" type="fixed">
+    <parent link="base_link"/>
+    <child link="base_plate"/>
+    <origin xyz="0 0 0.4" rpy="0 0 0"/> </joint>
+
+  <link name="base_plate">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 ${pi}"/>
+      <geometry>
+        <mesh filename="package://autonomus_mobile_robot/stl/main_body.stl" scale="0.001 0.001 0.001" /> 
+      </geometry>
+      <material name="white">
+        <color rgba="1 1 1 1"/>
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 ${pi}"/>
+      <geometry>
+        <mesh filename="package://autonomus_mobile_robot/stl/main_body.stl" scale="0.001 0.001 0.001" />
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="right_wheel_joint" type="continuous">
+    <parent link="base_plate" />
+    <child link="right_wheel" />
+    <origin xyz="0 -0.23 -0.4" rpy="${pi/2} 0 0" />
+    <axis xyz="0 0 -1"/>
+  </joint>
+
+  <link name="right_wheel">
+    <visual>
+      <geometry>
+        <mesh filename="package://autonomus_mobile_robot/stl/wheel.stl" scale="0.001 0.001 0.001"/> 
+      </geometry>
+      <material name="black">
+        <color rgba="0 0 0 1"/>
+      </material>
+    </visual>
+    <collision>
+      <geometry>
+        <mesh filename="package://autonomus_mobile_robot/stl/wheel.stl" scale="0.001 0.001 0.001" />
+      </geometry>
+    </collision>
+  </link> 
+
+  <joint name="left_wheel_joint" type="continuous">
+    <parent link="base_plate" />
+    <child link="left_wheel" />
+    <origin xyz="0 0.23 -0.4" rpy="${pi} ${pi} ${pi/2}"/>
+    <axis xyz="-1 0 0" />
+  </joint>
+
+  <link name="left_wheel">
+    <visual>
+      <geometry>
+        <mesh filename="package://autonomus_mobile_robot/stl/wheel.stl" scale="0.001 0.001 0.001"/> 
+      </geometry>
+       <material name="black"/>
+    </visual>
+    <collision>
+      <geometry>
+        <mesh filename="package://autonomus_mobile_robot/stl/wheel.stl" scale="0.001 0.001 0.001" />
+      </geometry>
+    </collision>
+  </link> 
+
+  <joint name="kinect_joint" type="fixed">
+    <parent link="base_plate" />
+    <child link="kinect_link" />
+    <origin xyz="0 0 0.43" rpy="0 0 0"/>
+  </joint>
+
+  <link name="kinect_link">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 ${pi}"/>
+      <geometry>
+        <mesh filename="package://autonomus_mobile_robot/stl/kinect.stl" scale="0.001 0.001 0.001"/> 
+      </geometry>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 ${pi}"/>
+      <geometry>
+        <mesh filename="package://autonomus_mobile_robot/stl/kinect.stl" scale="0.001 0.001 0.001" />
+      </geometry>
+    </collision>
+  </link> 
+</robot>
+
+
+
+<launch>
+  <param name="robot_description" command="$(find xacro)/xacro '$(find robot_debug)/urdf/robot.urdf.xacro'" />
+
+  <node name="joint_state_publisher_gui" pkg="joint_state_publisher_gui" type="joint_state_publisher_gui" />
+  <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" />
+
+  <node name="rviz" pkg="rviz" type="rviz" args="-d $(find autonomus_mobile_robot)/config/amcl_nav.rviz" />
+</launch>
