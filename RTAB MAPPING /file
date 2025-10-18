@@ -1,7 +1,32 @@
-roslaunch rtabmap_ros rtabmap.launch  rtabmap_viz 
-Usage: roslaunch [options] [package] <filename> [arg_name:=value...]
-       roslaunch [options] <filename> [<filename>...] [arg_name:=value...]
-
-If <filename> is a single dash ('-'), launch XML is read from standard input.
-
-roslaunch: error: The following input files do not exist: rtabmap_viz
+ sudo apt-get install ros-noetic-rqt-tf-tree
+[sudo] password for iascr: 
+Sorry, try again.
+[sudo] password for iascr: 
+Reading package lists... Done
+Building dependency tree       
+Reading state information... Done
+ros-noetic-rqt-tf-tree is already the newest version (0.6.5-1focal.20250520.001233).
+ros-noetic-rqt-tf-tree set to manually installed.
+0 upgraded, 0 newly installed, 0 to remove and 693 not upgraded.
+iascr@iascr-robot:~$ source /opt/ros/noetic/setup.bash 
+iascr@iascr-robot:~$ rqt
+rqt               rqt_dep           rqt_logger_level  rqt_topic
+rqt_bag           rqt_graph         rqt_plot          
+rqt_console       rqt_image_view    rqt_shell         
+iascr@iascr-robot:~$ rosrun t
+teb_local_planner       tf2_ros                 turtlebot3_gazebo
+teleop_twist_keyboard   tf_conversions          turtlebot3_msgs
+tf                      theora_image_transport  turtlebot3_navigation
+tf2                     topic_tools             turtlebot3_teleop
+tf2_eigen               trajectory_msgs         turtlesim
+tf2_geometry_msgs       transmission_interface  turtle_tf
+tf2_kdl                 turtle_actionlib        turtle_tf2
+tf2_msgs                turtlebot3_bringup      
+tf2_py                  turtlebot3_description  
+iascr@iascr-robot:~$ rosrun tf
+tf                 tf2_geometry_msgs  tf2_py             
+tf2                tf2_kdl            tf2_ros            
+tf2_eigen          tf2_msgs           tf_conversions     
+iascr@iascr-robot:~$ rosrun tf tf_
+tf_change_notifier  tf_empty_listener   tf_remap
+tf_echo             tf_monitor          
