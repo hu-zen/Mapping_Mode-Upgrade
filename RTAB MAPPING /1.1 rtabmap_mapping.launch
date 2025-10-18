@@ -5,11 +5,11 @@
   </include>
 
   <node pkg="depthimage_to_laserscan" type="depthimage_to_laserscan" name="depthimage_to_laserscan" >
-      <remap from="image"       to="/camera/depth_registered/image_raw"/>
-      <remap from="camera_info" to="/camera/depth_registered/camera_info"/>
-      <remap from="scan"        to="/scan"/>
-      <param name="range_max"      type="double" value="4.0"/>
-    </node>
+    <remap from="image"       to="/camera/depth_registered/image_raw"/>
+    <remap from="camera_info" to="/camera/depth_registered/camera_info"/>
+    <remap from="scan"        to="/scan"/>
+    <param name="range_max"      type="double" value="4.0"/>
+  </node>
 
   <arg name="model" default="$(find autonomus_mobile_robot)/urdf/mobile_robot.urdf.xacro"/>
   <param name="robot_description" command="$(find xacro)/xacro $(arg model)" />
@@ -17,36 +17,26 @@
   <node name="rviz" pkg="rviz" type="rviz" args="-d $(find autonomus_mobile_robot)/config/amcl_nav.rviz"/>
   <node pkg="tf" type="static_transform_publisher" name="camera_optical" args="0 0 0.83 0 0 0 /base_link /camera_link 100" />
   
-  <group ns="rtabmap">
-    <node pkg="nodelet" type="nodelet" name="rgbd_sync" args="standalone rtabmap_sync/rgbd_sync" output="screen">
-      <remap from="rgb/image"       to="/camera/rgb/image_rect_color"/>
-      <remap from="depth/image"     to="/camera/depth_registered/image_raw"/>
-      <remap from="rgb/camera_info" to="/camera/rgb/camera_info"/>
-      <remap from="rgbd_image"      to="rgbd_image"/>
-      <param name="approx_sync"       value="true"/> 
-    </node>
-
-    <node pkg="rtabmap_odom" type="rgbd_odometry" name="rgbd_odometry" output="screen">
-      <param name="subscribe_rgbd" type="bool"   value="true"/>
-      <param name="frame_id"       type="string" value="base_link"/>
-      <remap from="rgbd_image" to="rgbd_image"/>
-      <remap from="odom" to="odom"/>
-    </node>
-  </group>
-
   <node pkg="rosserial_python" type="serial_node.py" name="serial_node">
     <param name="port" value="/dev/ttyUSB1"/>
     <param name="baud" value="115200"/>
   </node>
-  <node pkg="my_robot_pkg" type="ekf_odom_pub" name="ekf_odom_pub" /> 
- 
-  <node name="rtabmap" pkg="rtabmap_ros" type="rtabmap" output="screen" args="--delete_db_on_start">
-      
-      <remap from="/rtabmap/grid_map" to="/map"/>
 
-      <remap from="odom" to="/odom"/> 
+  <node pkg="my_robot_pkg" type="ekf_odom_pub" name="ekf_odom_pub" output="screen"/>
+  
+  <group ns="rtabmap">
+    <node pkg="nodelet" type="nodelet" name="rgbd_sync" args="standalone rtab_sync/rgbd_sync" output="screen">
+      <remap from="rgb/image"       to="/camera/rgb/image_rect_color"/>
+      <remap from="depth/image"     to="/camera/depth_registered/image_raw"/>
+      <remap from="camera_info" to="/camera/rgb/camera_info"/>
+      <remap from="rgbd_image"      to="rgbd_image"/>
+      <param name="approx_sync"    value="true"/>
+    </node>
+
+    <node name="rtabmap" pkg="rtabmap_ros" type="rtabmap" output="screen" args="--delete_db_on_start">
+      <remap from="odom" to="/odom_data_quat"/> <remap from="/rtabmap/grid_map" to="/map"/>
+
       <remap from="scan" to="/scan"/>
-      
       <remap from="rgbd_image" to="/rtabmap/rgbd_image"/>
       
       <param name="frame_id" type="string" value="base_link"/>
@@ -54,5 +44,6 @@
       <param name="subscribe_rgbd" type="bool" value="true"/>
       <param name="Reg/Force3DoF" type="string" value="true"/>
       <param name="Grid/FromDepth" type="string" value="false"/>
-  </node>
+    </node>
+  </group>
 </launch>
