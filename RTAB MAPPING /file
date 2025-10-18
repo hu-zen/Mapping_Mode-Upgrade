@@ -1,1 +1,8 @@
 ERROR: cannot launch node of type [rtabmap_ros/rtabmap]: Cannot locate node of type [rtabmap] in package [rtabmap_ros]. Make sure file exists in package path and permission is set to executable (chmod +x)
+[ WARN] (2025-10-18 15:16:49.756) OdometryF2M.cpp:557::computeTransform() Registration failed: "Not enough inliers 0/20 (matches=11) between -1 and 2"
+[ INFO] [1760771809.756174562]: Odom: quality=0, std dev=0.000000m|0.000000rad, update time=0.020436s
+Error:   TF_NAN_INPUT: Ignoring transform for child_frame_id "vo" from authority "default_authority" because of a nan value in the transform (-nan -nan -nan) (-nan -nan -nan -nan)
+         at line 240 in /tmp/binarydeb/ros-noetic-tf2-0.7.6/src/buffer_core.cpp
+Error:   TF_DENORMALIZED_QUATERNION: Ignoring transform for child_frame_id "vo" from authority "default_authority" because of an invalid quaternion in the transform (-nan -nan -nan -nan)
+         at line 255 in /tmp/binarydeb/ros-noetic-tf2-0.7.6/src/buffer_core.cpp
+[ERROR] [1760771809.770371892]: filter time older than vo message buffer
