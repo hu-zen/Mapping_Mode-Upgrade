@@ -1,30 +1,43 @@
-/rtabmap/rgbd_sync subscribed to (approx sync):
-   /camera/rgb/image_rect_color \
-   /camera/depth_registered/image_raw \
-   /camera/rgb/camera_info
-[ WARN] [1760847082.800136626]: Could not find any compatible depth output mode for 1. Falling back to default depth output mode 1.
-[ INFO] [1760847082.815215591]: rgb_frame_id = 'camera_rgb_optical_frame' 
-[ INFO] [1760847082.825162093]: depth_frame_id = 'camera_depth_optical_frame' 
-[ WARN] [1760847082.843035346]: Camera calibration file /home/iascr/.ros/camera_info/rgb_A00367908097045A.yaml not found.
-[ WARN] [1760847082.843190007]: Using default parameters for RGB camera calibration.
-[ WARN] [1760847082.845577286]: Camera calibration file /home/iascr/.ros/camera_info/depth_A00367908097045A.yaml not found.
-[ WARN] [1760847082.845954520]: Using default parameters for IR camera calibration.
-[ INFO] [1760847083.213134739]: RGBDOdometry: approx_sync    = true
-[ INFO] [1760847083.213180396]: RGBDOdometry: approx_sync_max_interval = 0.000000
-[ INFO] [1760847083.213216380]: RGBDOdometry: queue_size     = 5
-[ INFO] [1760847083.213228534]: RGBDOdometry: subscribe_rgbd = true
-[ INFO] [1760847083.213236898]: RGBDOdometry: rgbd_cameras   = 1
-[ INFO] [1760847083.213246814]: RGBDOdometry: keep_color     = false
-[ INFO] [1760847083.215310263]: 
-/rtabmap/rgbd_odometry subscribed to:
-   /rtabmap/rgbd_image
-[ WARN] [1760847083.799501847]: The time difference between rgb and depth frames is high (diff=0.011040s, rgb=1760847083.766050s, depth=1760847083.777090s). You may want to set approx_sync_max_interval lower than 0.01s to reject spurious bad synchronizations or use approx_sync=false if streams have all the exact same timestamp.
-[ WARN] [1760847083.833498046]: The time difference between rgb and depth frames is high (diff=0.012992s, rgb=1760847083.797923s, depth=1760847083.810915s). You may want to set approx_sync_max_interval lower than 0.01s to reject spurious bad synchronizations or use approx_sync=false if streams have all the exact same timestamp.
-[ INFO] [1760847083.851585844]: Odom: quality=0, std dev=99.995000m|99.995000rad, update time=0.012121s
-[ WARN] [1760847083.868413152]: The time difference between rgb and depth frames is high (diff=0.011623s, rgb=1760847083.831995s, depth=1760847083.843618s). You may want to set approx_sync_max_interval lower than 0.01s to reject spurious bad synchronizations or use approx_sync=false if streams have all the exact same timestamp.
-[ INFO] [1760847083.899572863]: Odom: quality=145, std dev=0.007461m|0.015492rad, update time=0.046521s
-[ WARN] [1760847083.900194880]: The time difference between rgb and depth frames is high (diff=0.010614s, rgb=1760847083.866088s, depth=1760847083.876702s). You may want to set approx_sync_max_interval lower than 0.01s to reject spurious bad synchronizations or use approx_sync=false if streams have all the exact same timestamp.
-[ INFO] [1760847083.932145136]: Odom: quality=263, std dev=0.013753m|0.015865rad, update time=0.031522s
-[ WARN] [1760847083.935150559]: The time difference between rgb and depth frames is high (diff=0.013722s, rgb=1760847083.898007s, depth=1760847083.911729s). You may want to set approx_sync_max_interval lower than 0.01s to reject spurious bad synchronizations or use approx_sync=false if streams have all the exact same timestamp.
-[ WARN] [1760847083.968307507]: The time difference between rgb and depth frames is high (diff=0.012840s, rgb=1760847083.931983s, depth=1760847083.944824s). You may want to set approx_sync_max_interval lower than 0.01s to reject spurious bad synchronizations or use approx_sync=false if streams have all the exact same timestamp.
-[ INFO] [1760847083.971582219]: Odom: quality=267, std dev=0.015062m|0.016214rad, update time=0.037627s
+rostopic hz /robot_pose_ekf/odom_combined 
+subscribed to [/robot_pose_ekf/odom_combined]
+average rate: 17.582
+	min: 0.033s max: 0.067s std dev: 0.01528s window: 18
+average rate: 19.827
+	min: 0.033s max: 0.067s std dev: 0.01675s window: 40
+average rate: 19.887
+	min: 0.033s max: 0.067s std dev: 0.01676s window: 60
+
+rostopic hz /scan
+subscribed to [/scan]
+average rate: 29.289
+	min: 0.000s max: 0.048s std dev: 0.01179s window: 29
+average rate: 29.837
+	min: 0.000s max: 0.048s std dev: 0.01493s window: 59
+average rate: 29.949
+	min: 0.000s max: 0.048s std dev: 0.01559s window: 89
+average rate: 29.786
+	min: 0.000s max: 0.048s std dev: 0.01583s window: 118
+
+ostopic hz /camera/rgb/image_rect_color
+subscribed to [/camera/rgb/image_rect_color]
+average rate: 30.103
+	min: 0.031s max: 0.035s std dev: 0.00099s window: 30
+average rate: 30.007
+	min: 0.031s max: 0.035s std dev: 0.00100s window: 60
+average rate: 30.002
+	min: 0.031s max: 0.035s std dev: 0.00106s window: 90
+average rate: 29.995
+	min: 0.030s max: 0.036s std dev: 0.00110s window: 120
+
+rostopic hz /camera/depth_registered/image_raw
+subscribed to [/camera/depth_registered/image_raw]
+average rate: 29.978
+	min: 0.031s max: 0.035s std dev: 0.00107s window: 30
+average rate: 29.984
+	min: 0.031s max: 0.036s std dev: 0.00113s window: 60
+average rate: 29.975
+	min: 0.031s max: 0.036s std dev: 0.00119s window: 90
+average rate: 29.971
+	min: 0.031s max: 0.036s std dev: 0.00114s window: 120
+^Caverage rate: 29.963
+	min: 0.031s max: 0.036s std dev: 0.00111s window: 128
