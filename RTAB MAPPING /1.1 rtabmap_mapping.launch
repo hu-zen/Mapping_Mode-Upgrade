@@ -11,6 +11,11 @@
         <param name="output_frame_id" type="str" value="camera_depth_frame"/>
     </node>
 
+  <<!--node pkg="my_robot_pkg" type="rviz_click_to_2d" name="rviz_click_to_2d">
+  </node>
+  <node pkg="my_robot_pkg" type="ekf_odom_pub" name="ekf_odom_pub">-->
+
+  </node> 
     <node pkg="rosserial_python" type="serial_node.py" name="serial_node" output="screen">
       <param name="port" value="/dev/ttyUSB1"/>
       <param name="baud" value="115200"/>
