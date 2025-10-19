@@ -3,6 +3,13 @@
         <arg name="depth_registration" value="true" />
     </include>
 
+    <node pkg="depthimage_to_laserscan" type="depthimage_to_laserscan" name="depthimage_to_laserscan">
+        <remap from="image" to="/camera/depth_registered/image_raw"/>
+        <remap from="scan" to="/scan"/>
+        <param name="range_max" type="double" value="4.5"/>
+        <param name="output_frame_id" type="str" value="camera_depth_frame"/>
+    </node>
+
     <node pkg="rosserial_python" type="serial_node.py" name="serial_node_sensors" output="screen">
         <param name="port" value="/dev/ttyUSB1"/>
         <param name="baud" value="115200"/>
@@ -15,10 +22,9 @@
     
     <node pkg="rtabmap_odom" type="rgbd_odometry" name="rgbd_odometry" output="screen">
       <param name="frame_id" type="string" value="base_link"/>
-      <param name="subscribe_rgbd" type="bool"   value="true"/>
-      <remap from="rgbd_image" to="/rtabmap/rgbd_image"/>
-      <remap from="odom" to="/vo"/>
-    </node>
+      <param name="subscribe_rgbd" type="bool" value="true"/>
+      <remap from="rgbd_image" to="/rtabmap_ros/rgbd_image"/>
+      <remap from="odom" to="/vo"/> </node>
 
     <node pkg="robot_pose_ekf" type="robot_pose_ekf" name="robot_pose_ekf">
         <param name="output_frame" value="odom"/>
@@ -31,7 +37,7 @@
         <remap from="imu_data" to="/imu/data" />
     </node>
 
-    <group ns="rtabmap">
+    <group ns="rtabmap_ros">
         <node name="rtabmap" pkg="rtabmap_ros" type="rtabmap" output="screen" args="--delete_db_on_start">
             <remap from="odom" to="/robot_pose_ekf/odom_combined"/> 
             
@@ -51,11 +57,6 @@
             <remap from="rgb/camera_info" to="/camera/rgb/camera_info"/>
             <remap from="rgbd_image" to="rgbd_image"/>
             <param name="approx_sync" value="true"/>
-        </node>
-        <node pkg="depthimage_to_laserscan" type="depthimage_to_lasercan" name="depthimage_to_laserscan">
-            <remap from="image" to="/camera/depth_registered/image_raw"/>
-            <remap from="scan" to="/scan"/>
-            <param name="range_max" type="double" value="4.0"/>
         </node>
     </group>
 
