@@ -1,319 +1,289 @@
+roslaunch rtabmap_mapping.launch 
+... logging to /home/iascr/.ros/log/00596ade-aca0-11f0-804b-3d96d22e3af3/roslaunch-iascr-robot-72501.log
+Checking log directory for disk usage. This may take a while.
+Press Ctrl-C to interrupt
+WARNING: disk usage in log directory [/home/iascr/.ros/log] is over 1GB.
+It's recommended that you use the 'rosclean' command.
+
+started roslaunch server http://iascr-robot:41695/
+
+SUMMARY
+========
+
+PARAMETERS
+ * /camera/camera_nodelet_manager/num_worker_threads: 4
+ * /camera/depth_metric/queue_size: 5
+ * /camera/depth_metric_rect/queue_size: 5
+ * /camera/depth_points/queue_size: 5
+ * /camera/depth_rectify_depth/interpolation: 0
+ * /camera/depth_rectify_depth/queue_size: 5
+ * /camera/depth_registered_hw_metric_rect/queue_size: 5
+ * /camera/depth_registered_metric/queue_size: 5
+ * /camera/depth_registered_rectify_depth/interpolation: 0
+ * /camera/depth_registered_rectify_depth/queue_size: 5
+ * /camera/depth_registered_sw_metric_rect/queue_size: 5
+ * /camera/disparity_depth/max_range: 4.0
+ * /camera/disparity_depth/min_range: 0.5
+ * /camera/disparity_depth/queue_size: 5
+ * /camera/disparity_registered_hw/max_range: 4.0
+ * /camera/disparity_registered_hw/min_range: 0.5
+ * /camera/disparity_registered_hw/queue_size: 5
+ * /camera/disparity_registered_sw/max_range: 4.0
+ * /camera/disparity_registered_sw/min_range: 0.5
+ * /camera/disparity_registered_sw/queue_size: 5
+ * /camera/driver/data_skip: 0
+ * /camera/driver/debug: False
+ * /camera/driver/depth_camera_info_url: 
+ * /camera/driver/depth_frame_id: camera_depth_opti...
+ * /camera/driver/depth_registration: True
+ * /camera/driver/device_id: #1
+ * /camera/driver/diagnostics_max_frequency: 30.0
+ * /camera/driver/diagnostics_min_frequency: 30.0
+ * /camera/driver/diagnostics_tolerance: 0.05
+ * /camera/driver/diagnostics_window_time: 5.0
+ * /camera/driver/enable_depth_diagnostics: False
+ * /camera/driver/enable_ir_diagnostics: False
+ * /camera/driver/enable_rgb_diagnostics: False
+ * /camera/driver/rgb_camera_info_url: 
+ * /camera/driver/rgb_frame_id: camera_rgb_optica...
+ * /camera/ir_rectify_ir/queue_size: 5
+ * /camera/points_xyzrgb_hw_registered/queue_size: 5
+ * /camera/points_xyzrgb_sw_registered/queue_size: 5
+ * /camera/register_depth_rgb/queue_size: 5
+ * /camera/rgb_debayer/queue_size: 5
+ * /camera/rgb_rectify_color/queue_size: 5
+ * /camera/rgb_rectify_mono/queue_size: 5
+ * /depthimage_to_laserscan/output_frame_id: camera_depth_frame
+ * /depthimage_to_laserscan/range_max: 4.5
+ * /depthimage_to_laserscan/range_min: 0.45
+ * /depthimage_to_laserscan/scan_height: 10
+ * /depthimage_to_laserscan/scan_time: 0.033
+ * /robot_description: <?xml version="1....
+ * /robot_pose_ekf/base_footprint_frame: base_footprint
+ * /robot_pose_ekf/freq: 30.0
+ * /robot_pose_ekf/imu_used: True
+ * /robot_pose_ekf/odom_used: True
+ * /robot_pose_ekf/output_frame: odom
+ * /robot_pose_ekf/sensor_timeout: 1.0
+ * /robot_pose_ekf/vo_used: True
+ * /rosdistro: noetic
+ * /rosversion: 1.16.0
+ * /rtabmap/rgbd_odometry/frame_id: base_link
+ * /rtabmap/rgbd_odometry/subscribe_rgbd: True
+ * /rtabmap/rgbd_sync/approx_sync: True
+ * /rtabmap/rtabmap/Grid/FromDepth: False
+ * /rtabmap/rtabmap/Grid/MaxObstacleHeight: 1.5
+ * /rtabmap/rtabmap/Icp/MaxCorrespondenceDistance: 0.1
+ * /rtabmap/rtabmap/Reg/Strategy: 1
+ * /rtabmap/rtabmap/Vis/MinInliers: 15
+ * /rtabmap/rtabmap/frame_id: base_link
+ * /rtabmap/rtabmap/subscribe_depth: True
+ * /rtabmap/rtabmap/subscribe_scan: True
+ * /serial_node_sensors/baud: 115200
+ * /serial_node_sensors/port: /dev/ttyUSB1
+
+NODES
+  /
+    camera_base_link (tf2_ros/static_transform_publisher)
+    camera_base_link1 (tf2_ros/static_transform_publisher)
+    camera_base_link2 (tf2_ros/static_transform_publisher)
+    camera_base_link3 (tf2_ros/static_transform_publisher)
+    depthimage_to_laserscan (depthimage_to_laserscan/depthimage_to_laserscan)
+    robot_pose_ekf (robot_pose_ekf/robot_pose_ekf)
+    robot_state_publisher (robot_state_publisher/robot_state_publisher)
+    rviz (rviz/rviz)
+    serial_node_sensors (rosserial_python/serial_node.py)
+  /camera/
+    camera_nodelet_manager (nodelet/nodelet)
+    depth_metric (nodelet/nodelet)
+    depth_metric_rect (nodelet/nodelet)
+    depth_points (nodelet/nodelet)
+    depth_rectify_depth (nodelet/nodelet)
+    depth_registered_hw_metric_rect (nodelet/nodelet)
+    depth_registered_metric (nodelet/nodelet)
+    depth_registered_rectify_depth (nodelet/nodelet)
+    depth_registered_sw_metric_rect (nodelet/nodelet)
+    disparity_depth (nodelet/nodelet)
+    disparity_registered_hw (nodelet/nodelet)
+    disparity_registered_sw (nodelet/nodelet)
+    driver (nodelet/nodelet)
+    ir_rectify_ir (nodelet/nodelet)
+    points_xyzrgb_hw_registered (nodelet/nodelet)
+    points_xyzrgb_sw_registered (nodelet/nodelet)
+    register_depth_rgb (nodelet/nodelet)
+    rgb_debayer (nodelet/nodelet)
+    rgb_rectify_color (nodelet/nodelet)
+    rgb_rectify_mono (nodelet/nodelet)
+  /rtabmap/
+    rgbd_odometry (rtabmap_odom/rgbd_odometry)
+    rgbd_sync (nodelet/nodelet)
+    rtabmap (rtabmap_ros/rtabmap)
+
+auto-starting new master
+process[master]: started with pid [72511]
+ROS_MASTER_URI=http://localhost:11311
+
+setting /run_id to 00596ade-aca0-11f0-804b-3d96d22e3af3
+process[rosout-1]: started with pid [72521]
+started core service [/rosout]
+process[camera/camera_nodelet_manager-2]: started with pid [72528]
+process[camera/driver-3]: started with pid [72529]
+process[camera/rgb_debayer-4]: started with pid [72530]
+process[camera/rgb_rectify_mono-5]: started with pid [72531]
+process[camera/rgb_rectify_color-6]: started with pid [72532]
+process[camera/ir_rectify_ir-7]: started with pid [72537]
+process[camera/depth_rectify_depth-8]: started with pid [72543]
+process[camera/depth_metric_rect-9]: started with pid [72550]
+process[camera/depth_metric-10]: started with pid [72556]
+process[camera/depth_points-11]: started with pid [72565]
+process[camera/register_depth_rgb-12]: started with pid [72570]
+[ INFO] [1760846365.441761767]: Initializing nodelet with 4 worker threads.
+process[camera/points_xyzrgb_sw_registered-13]: started with pid [72577]
+process[camera/depth_registered_sw_metric_rect-14]: started with pid [72588]
+process[camera/depth_registered_rectify_depth-15]: started with pid [72593]
+process[camera/points_xyzrgb_hw_registered-16]: started with pid [72599]
+process[camera/depth_registered_hw_metric_rect-17]: started with pid [72605]
+process[camera/depth_registered_metric-18]: started with pid [72609]
+process[camera/disparity_depth-19]: started with pid [72614]
+process[camera/disparity_registered_sw-20]: started with pid [72618]
+process[camera/disparity_registered_hw-21]: started with pid [72626]
+process[camera_base_link-22]: started with pid [72632]
+process[camera_base_link1-23]: started with pid [72637]
+process[camera_base_link2-24]: started with pid [72642]
+process[camera_base_link3-25]: started with pid [72651]
+process[depthimage_to_laserscan-26]: started with pid [72654]
+process[robot_state_publisher-27]: started with pid [72661]
+process[serial_node_sensors-28]: started with pid [72671]
+process[rtabmap/rgbd_odometry-29]: started with pid [72673]
+process[rtabmap/rgbd_sync-30]: started with pid [72679]
+process[robot_pose_ekf-31]: started with pid [72682]
+ERROR: cannot launch node of type [rtabmap_ros/rtabmap]: Cannot locate node of type [rtabmap] in package [rtabmap_ros]. Make sure file exists in package path and permission is set to executable (chmod +x)
+type is rtabmap_sync/rgbd_sync
+process[rviz-33]: started with pid [72687]
+[ INFO] [1760846365.734287890]: Number devices connected: 1
+[ INFO] [1760846365.734459837]: 1. device on bus 000:00 is a Xbox NUI Camera (2ae) from Microsoft (45e) with serial id 'A00367908097045A'
+[ INFO] [1760846365.736300131]: Searching for device with index = 1
+[ INFO] [1760846365.817365265]: Initializing nodelet with 20 worker threads.
+[ INFO] [1760846365.844374567]: Starting a 3s RGB and Depth stream flush.
+[ INFO] [1760846365.844637825]: Opened 'Xbox NUI Camera' on bus 0:0 with serial number 'A00367908097045A'
+[ INFO] [1760846365.884936154]: Odometry: frame_id               = base_link
+[ INFO] [1760846365.885005407]: Odometry: odom_frame_id          = odom
+[ INFO] [1760846365.885044549]: Odometry: publish_tf             = true
+[ INFO] [1760846365.885076614]: Odometry: wait_for_transform     = true
+[ INFO] [1760846365.885125447]: Odometry: wait_for_transform_duration  = 0.100000
+[ INFO] [1760846365.885161566]: Odometry: log_to_rosout_level    = 4
+[ INFO] [1760846365.885238769]: Odometry: initial_pose           = xyz=0.000000,0.000000,0.000000 rpy=0.000000,-0.000000,0.000000
+[ INFO] [1760846365.885270882]: Odometry: ground_truth_frame_id  = 
+[ INFO] [1760846365.885299501]: Odometry: ground_truth_base_frame_id = base_link
+[ INFO] [1760846365.885331608]: Odometry: config_path            = 
+[ INFO] [1760846365.885358546]: Odometry: publish_null_when_lost = true
+[ INFO] [1760846365.885385768]: Odometry: guess_frame_id         = 
+[ INFO] [1760846365.885413307]: Odometry: guess_min_translation  = 0.000000
+[ INFO] [1760846365.885442443]: Odometry: guess_min_rotation     = 0.000000
+[ INFO] [1760846365.885470182]: Odometry: guess_min_time         = 0.000000
+[ INFO] [1760846365.885497997]: Odometry: expected_update_rate   = 0.000000 Hz
+[ INFO] [1760846365.885522411]: Odometry: max_update_rate        = 0.000000 Hz
+[ INFO] [1760846365.885546767]: Odometry: min_update_rate        = 0.000000 Hz
+[ INFO] [1760846365.885570835]: Odometry: wait_imu_to_init       = false
+[ INFO] [1760846365.885626285]: Odometry: stereoParams_=0 visParams_=1 icpParams_=0
+[ INFO] [1760846365.946383411]: /rtabmap/rgbd_sync: approx_sync = true
+[ INFO] [1760846365.949095631]: /rtabmap/rgbd_sync: approx_sync_max_interval = 0.000000
+[ INFO] [1760846365.949247770]: /rtabmap/rgbd_sync: queue_size  = 10
+[ INFO] [1760846365.949370595]: /rtabmap/rgbd_sync: depth_scale = 1.000000
+[ INFO] [1760846365.949480779]: /rtabmap/rgbd_sync: decimation = 1
+[ INFO] [1760846365.949591284]: /rtabmap/rgbd_sync: compressed_rate = 0.000000
+[ INFO] [1760846365.990800825]: 
 /rtabmap/rgbd_sync subscribed to (approx sync):
    /camera/rgb/image_rect_color \
    /camera/depth_registered/image_raw \
    /camera/rgb/camera_info
-[ WARN] [1760845240.776826648]: Could not find any compatible depth output mode for 1. Falling back to default depth output mode 1.
-[ INFO] [1760845241.287229249]: RGBDOdometry: approx_sync    = true
-[ INFO] [1760845241.287293948]: RGBDOdometry: approx_sync_max_interval = 0.000000
-[ INFO] [1760845241.287328722]: RGBDOdometry: queue_size     = 5
-[ INFO] [1760845241.287370691]: RGBDOdometry: subscribe_rgbd = true
-[ INFO] [1760845241.287403385]: RGBDOdometry: rgbd_cameras   = 1
-[ INFO] [1760845241.287435773]: RGBDOdometry: keep_color     = false
-[ INFO] [1760845241.291357029]: 
+[ WARN] [1760846366.091052129]: Could not find any compatible depth output mode for 1. Falling back to default depth output mode 1.
+[ INFO] [1760846366.105643486]: rgb_frame_id = 'camera_rgb_optical_frame' 
+[ INFO] [1760846366.105695719]: depth_frame_id = 'camera_depth_optical_frame' 
+[ WARN] [1760846366.117956360]: Camera calibration file /home/iascr/.ros/camera_info/rgb_A00367908097045A.yaml not found.
+[ WARN] [1760846366.118457732]: Using default parameters for RGB camera calibration.
+[ WARN] [1760846366.118503713]: Camera calibration file /home/iascr/.ros/camera_info/depth_A00367908097045A.yaml not found.
+[ WARN] [1760846366.118538956]: Using default parameters for IR camera calibration.
+[ INFO] [1760846366.455362513]: RGBDOdometry: approx_sync    = true
+[ INFO] [1760846366.455414053]: RGBDOdometry: approx_sync_max_interval = 0.000000
+[ INFO] [1760846366.455428390]: RGBDOdometry: queue_size     = 5
+[ INFO] [1760846366.455463946]: RGBDOdometry: subscribe_rgbd = true
+[ INFO] [1760846366.455481631]: RGBDOdometry: rgbd_cameras   = 1
+[ INFO] [1760846366.455494882]: RGBDOdometry: keep_color     = false
+[ INFO] [1760846366.457000659]: 
 /rtabmap/rgbd_odometry subscribed to:
    /rtabmap/rgbd_image
-[ INFO] [1760845241.724983372]: rgb_frame_id = 'camera_rgb_optical_frame' 
-[ INFO] [1760845241.725060662]: depth_frame_id = 'camera_depth_optical_frame' 
-[ WARN] [1760845241.734270258]: Camera calibration file /home/iascr/.ros/camera_info/rgb_A00367908097045A.yaml not found.
-[ WARN] [1760845241.734323530]: Using default parameters for RGB camera calibration.
-[ WARN] [1760845241.734353387]: Camera calibration file /home/iascr/.ros/camera_info/depth_A00367908097045A.yaml not found.
-[ WARN] [1760845241.734381837]: Using default parameters for IR camera calibration.
-[ERROR] [1760845242.696632]: Mismatched protocol version in packet (b'\x02'): lost sync or rosserial_python is from different ros release than the rosserial client
-[ERROR] [1760845242.699508]: Mismatched protocol version in packet (b'K'): lost sync or rosserial_python is from different ros release than the rosserial client
-[WARN] [1760845242.701380]: Last read step: syncflag
-[WARN] [1760845242.702318]: Run loop error: Serial Port read failure: read failed: device reports readiness to read but returned no data (device disconnected or multiple access on port?)
-[ERROR] [1760845242.798645]: Tried to publish before configured, topic id 126
-[ERROR] [1760845243.105921]: Tried to publish before configured, topic id 126
-[ERROR] [1760845243.308966]: Tried to publish before configured, topic id 126
-[ INFO] [1760845243.376952022]: Stopping device RGB and Depth stream flush.
-[ERROR] [1760845243.409559]: Tried to publish before configured, topic id 126
-[ERROR] [1760845243.510757]: Mismatched protocol version in packet (b'\x02'): lost sync or rosserial_python is from different ros release than the rosserial client
-[ WARN] [1760845243.708881084]: The time difference between rgb and depth frames is high (diff=0.156054s, rgb=1760845243.706948s, depth=1760845243.550893s). You may want to set approx_sync_max_interval lower than 0.01s to reject spurious bad synchronizations or use approx_sync=false if streams have all the exact same timestamp.
-
-rostopic list 
-/camera/depth/camera_info
-/camera/depth/disparity
-/camera/depth/image
-/camera/depth/image/compressed
-/camera/depth/image/compressed/parameter_descriptions
-/camera/depth/image/compressed/parameter_updates
-/camera/depth/image/compressedDepth
-/camera/depth/image/compressedDepth/parameter_descriptions
-/camera/depth/image/compressedDepth/parameter_updates
-/camera/depth/image/theora
-/camera/depth/image/theora/parameter_descriptions
-/camera/depth/image/theora/parameter_updates
-/camera/depth/image_raw
-/camera/depth/image_raw/compressed
-/camera/depth/image_raw/compressed/parameter_descriptions
-/camera/depth/image_raw/compressed/parameter_updates
-/camera/depth/image_raw/compressedDepth
-/camera/depth/image_raw/compressedDepth/parameter_descriptions
-/camera/depth/image_raw/compressedDepth/parameter_updates
-/camera/depth/image_raw/theora
-/camera/depth/image_raw/theora/parameter_descriptions
-/camera/depth/image_raw/theora/parameter_updates
-/camera/depth/image_rect
-/camera/depth/image_rect/compressed
-/camera/depth/image_rect/compressed/parameter_descriptions
-/camera/depth/image_rect/compressed/parameter_updates
-/camera/depth/image_rect/compressedDepth
-/camera/depth/image_rect/compressedDepth/parameter_descriptions
-/camera/depth/image_rect/compressedDepth/parameter_updates
-/camera/depth/image_rect/theora
-/camera/depth/image_rect/theora/parameter_descriptions
-/camera/depth/image_rect/theora/parameter_updates
-/camera/depth/image_rect_raw
-/camera/depth/image_rect_raw/compressed
-/camera/depth/image_rect_raw/compressed/parameter_descriptions
-/camera/depth/image_rect_raw/compressed/parameter_updates
-/camera/depth/image_rect_raw/compressedDepth
-/camera/depth/image_rect_raw/compressedDepth/parameter_descriptions
-/camera/depth/image_rect_raw/compressedDepth/parameter_updates
-/camera/depth/image_rect_raw/theora
-/camera/depth/image_rect_raw/theora/parameter_descriptions
-/camera/depth/image_rect_raw/theora/parameter_updates
-/camera/depth/points
-/camera/depth_rectify_depth/parameter_descriptions
-/camera/depth_rectify_depth/parameter_updates
-/camera/depth_registered/camera_info
-/camera/depth_registered/disparity
-/camera/depth_registered/hw_registered/image_rect
-/camera/depth_registered/hw_registered/image_rect/compressed
-/camera/depth_registered/hw_registered/image_rect/compressed/parameter_descriptions
-/camera/depth_registered/hw_registered/image_rect/compressed/parameter_updates
-/camera/depth_registered/hw_registered/image_rect/compressedDepth
-/camera/depth_registered/hw_registered/image_rect/compressedDepth/parameter_descriptions
-/camera/depth_registered/hw_registered/image_rect/compressedDepth/parameter_updates
-/camera/depth_registered/hw_registered/image_rect/theora
-/camera/depth_registered/hw_registered/image_rect/theora/parameter_descriptions
-/camera/depth_registered/hw_registered/image_rect/theora/parameter_updates
-/camera/depth_registered/hw_registered/image_rect_raw
-/camera/depth_registered/hw_registered/image_rect_raw/compressed
-/camera/depth_registered/hw_registered/image_rect_raw/compressed/parameter_descriptions
-/camera/depth_registered/hw_registered/image_rect_raw/compressed/parameter_updates
-/camera/depth_registered/hw_registered/image_rect_raw/compressedDepth
-/camera/depth_registered/hw_registered/image_rect_raw/compressedDepth/parameter_descriptions
-/camera/depth_registered/hw_registered/image_rect_raw/compressedDepth/parameter_updates
-/camera/depth_registered/hw_registered/image_rect_raw/theora
-/camera/depth_registered/hw_registered/image_rect_raw/theora/parameter_descriptions
-/camera/depth_registered/hw_registered/image_rect_raw/theora/parameter_updates
-/camera/depth_registered/image
-/camera/depth_registered/image/compressed
-/camera/depth_registered/image/compressed/parameter_descriptions
-/camera/depth_registered/image/compressed/parameter_updates
-/camera/depth_registered/image/compressedDepth
-/camera/depth_registered/image/compressedDepth/parameter_descriptions
-/camera/depth_registered/image/compressedDepth/parameter_updates
-/camera/depth_registered/image/theora
-/camera/depth_registered/image/theora/parameter_descriptions
-/camera/depth_registered/image/theora/parameter_updates
-/camera/depth_registered/image_raw
-/camera/depth_registered/image_raw/compressed
-/camera/depth_registered/image_raw/compressed/parameter_descriptions
-/camera/depth_registered/image_raw/compressed/parameter_updates
-/camera/depth_registered/image_raw/compressedDepth
-/camera/depth_registered/image_raw/compressedDepth/parameter_descriptions
-/camera/depth_registered/image_raw/compressedDepth/parameter_updates
-/camera/depth_registered/image_raw/theora
-/camera/depth_registered/image_raw/theora/parameter_descriptions
-/camera/depth_registered/image_raw/theora/parameter_updates
-/camera/depth_registered/points
-/camera/depth_registered/sw_registered/camera_info
-/camera/depth_registered/sw_registered/image_rect
-/camera/depth_registered/sw_registered/image_rect/compressed
-/camera/depth_registered/sw_registered/image_rect/compressed/parameter_descriptions
-/camera/depth_registered/sw_registered/image_rect/compressed/parameter_updates
-/camera/depth_registered/sw_registered/image_rect/compressedDepth
-/camera/depth_registered/sw_registered/image_rect/compressedDepth/parameter_descriptions
-/camera/depth_registered/sw_registered/image_rect/compressedDepth/parameter_updates
-/camera/depth_registered/sw_registered/image_rect/theora
-/camera/depth_registered/sw_registered/image_rect/theora/parameter_descriptions
-/camera/depth_registered/sw_registered/image_rect/theora/parameter_updates
-/camera/depth_registered/sw_registered/image_rect_raw
-/camera/depth_registered/sw_registered/image_rect_raw/compressed
-/camera/depth_registered/sw_registered/image_rect_raw/compressed/parameter_descriptions
-/camera/depth_registered/sw_registered/image_rect_raw/compressed/parameter_updates
-/camera/depth_registered/sw_registered/image_rect_raw/compressedDepth
-/camera/depth_registered/sw_registered/image_rect_raw/compressedDepth/parameter_descriptions
-/camera/depth_registered/sw_registered/image_rect_raw/compressedDepth/parameter_updates
-/camera/depth_registered/sw_registered/image_rect_raw/theora
-/camera/depth_registered/sw_registered/image_rect_raw/theora/parameter_descriptions
-/camera/depth_registered/sw_registered/image_rect_raw/theora/parameter_updates
-/camera/depth_registered_rectify_depth/parameter_descriptions
-/camera/depth_registered_rectify_depth/parameter_updates
-/camera/driver/parameter_descriptions
-/camera/driver/parameter_updates
-/camera/ir/camera_info
-/camera/ir/image_raw
-/camera/ir/image_raw/compressed
-/camera/ir/image_raw/compressed/parameter_descriptions
-/camera/ir/image_raw/compressed/parameter_updates
-/camera/ir/image_raw/compressedDepth
-/camera/ir/image_raw/compressedDepth/parameter_descriptions
-/camera/ir/image_raw/compressedDepth/parameter_updates
-/camera/ir/image_raw/theora
-/camera/ir/image_raw/theora/parameter_descriptions
-/camera/ir/image_raw/theora/parameter_updates
-/camera/ir/image_rect_ir
-/camera/ir/image_rect_ir/compressed
-/camera/ir/image_rect_ir/compressed/parameter_descriptions
-/camera/ir/image_rect_ir/compressed/parameter_updates
-/camera/ir/image_rect_ir/compressedDepth
-/camera/ir/image_rect_ir/compressedDepth/parameter_descriptions
-/camera/ir/image_rect_ir/compressedDepth/parameter_updates
-/camera/ir/image_rect_ir/theora
-/camera/ir/image_rect_ir/theora/parameter_descriptions
-/camera/ir/image_rect_ir/theora/parameter_updates
-/camera/ir_rectify_ir/parameter_descriptions
-/camera/ir_rectify_ir/parameter_updates
-/camera/projector/camera_info
-/camera/rgb/camera_info
-/camera/rgb/image_color
-/camera/rgb/image_color/compressed
-/camera/rgb/image_color/compressed/parameter_descriptions
-/camera/rgb/image_color/compressed/parameter_updates
-/camera/rgb/image_color/compressedDepth
-/camera/rgb/image_color/compressedDepth/parameter_descriptions
-/camera/rgb/image_color/compressedDepth/parameter_updates
-/camera/rgb/image_color/theora
-/camera/rgb/image_color/theora/parameter_descriptions
-/camera/rgb/image_color/theora/parameter_updates
-/camera/rgb/image_mono
-/camera/rgb/image_mono/compressed
-/camera/rgb/image_mono/compressed/parameter_descriptions
-/camera/rgb/image_mono/compressed/parameter_updates
-/camera/rgb/image_mono/compressedDepth
-/camera/rgb/image_mono/compressedDepth/parameter_descriptions
-/camera/rgb/image_mono/compressedDepth/parameter_updates
-/camera/rgb/image_mono/theora
-/camera/rgb/image_mono/theora/parameter_descriptions
-/camera/rgb/image_mono/theora/parameter_updates
-/camera/rgb/image_raw
-/camera/rgb/image_raw/compressed
-/camera/rgb/image_raw/compressed/parameter_descriptions
-/camera/rgb/image_raw/compressed/parameter_updates
-/camera/rgb/image_raw/compressedDepth
-/camera/rgb/image_raw/compressedDepth/parameter_descriptions
-/camera/rgb/image_raw/compressedDepth/parameter_updates
-/camera/rgb/image_raw/theora
-/camera/rgb/image_raw/theora/parameter_descriptions
-/camera/rgb/image_raw/theora/parameter_updates
-/camera/rgb/image_rect_color
-/camera/rgb/image_rect_color/compressed
-/camera/rgb/image_rect_color/compressed/parameter_descriptions
-/camera/rgb/image_rect_color/compressed/parameter_updates
-/camera/rgb/image_rect_color/compressedDepth
-/camera/rgb/image_rect_color/compressedDepth/parameter_descriptions
-/camera/rgb/image_rect_color/compressedDepth/parameter_updates
-/camera/rgb/image_rect_color/theora
-/camera/rgb/image_rect_color/theora/parameter_descriptions
-/camera/rgb/image_rect_color/theora/parameter_updates
-/camera/rgb/image_rect_mono
-/camera/rgb/image_rect_mono/compressed
-/camera/rgb/image_rect_mono/compressed/parameter_descriptions
-/camera/rgb/image_rect_mono/compressed/parameter_updates
-/camera/rgb/image_rect_mono/compressedDepth
-/camera/rgb/image_rect_mono/compressedDepth/parameter_descriptions
-/camera/rgb/image_rect_mono/compressedDepth/parameter_updates
-/camera/rgb/image_rect_mono/theora
-/camera/rgb/image_rect_mono/theora/parameter_descriptions
-/camera/rgb/image_rect_mono/theora/parameter_updates
-/camera/rgb_debayer/parameter_descriptions
-/camera/rgb_debayer/parameter_updates
-/camera/rgb_rectify_color/parameter_descriptions
-/camera/rgb_rectify_color/parameter_updates
-/camera/rgb_rectify_mono/parameter_descriptions
-/camera/rgb_rectify_mono/parameter_updates
-/cmd_vel
-/diagnostics
-/imu/data
-/initialpose
-/joint_states
-/joy
-/joy/set_feedback
-/left_ticks
-/map
-/map_updates
-/move_base_simple/goal
-/odom_data_quat
-/right_ticks
-/robot_pose_ekf/odom_combined
-/rosout
-/rosout_agg
-/rtabmap/cloud_map
-/rtabmap/odom_info
-/rtabmap/odom_info_lite
-/rtabmap/odom_last_frame
-/rtabmap/odom_local_map
-/rtabmap/odom_local_scan_map
-/rtabmap/odom_rgbd_image
-/rtabmap/rgbd_image
-/rtabmap/rgbd_image/compressed
-/scan
-/tf
-/tf_static
-/vo
-
-rostopic echo /scan /
-Display all 223 possibilities? (y or n)
-/camera/depth/camera_info
-/camera/depth/disparity
-/camera/depth/image
-/camera/depth/image/compressed
-/camera/depth/image/compressedDepth
-/camera/depth/image/compressedDepth/parameter_descriptions
-/camera/depth/image/compressedDepth/parameter_updates
-/camera/depth/image/compressed/parameter_descriptions
-/camera/depth/image/compressed/parameter_updates
-/camera/depth/image_raw
-/camera/depth/image_raw/compressed
-/camera/depth/image_raw/compressedDepth
-/camera/depth/image_raw/compressedDepth/parameter_descriptions
-/camera/depth/image_raw/compressedDepth/parameter_updates
-/camera/depth/image_raw/compressed/parameter_descriptions
-/camera/depth/image_raw/compressed/parameter_updates
-/camera/depth/image_raw/theora
-/camera/depth/image_raw/theora/parameter_descriptions
-/camera/depth/image_raw/theora/parameter_updates
-/camera/depth/image_rect
-/camera/depth/image_rect/compressed
-/camera/depth/image_rect/compressedDepth
-/camera/depth/image_rect/compressedDepth/parameter_descriptions
---More--^C
-
-rostopic echo /robot_pose_ekf/odom_combined /
-Display all 223 possibilities? (y or n)
-/camera/depth/camera_info
-/camera/depth/disparity
-/camera/depth/image
-/camera/depth/image/compressed
-/camera/depth/image/compressedDepth
-/camera/depth/image/compressedDepth/parameter_descriptions
-/camera/depth/image/compressedDepth/parameter_updates
-/camera/depth/image/compressed/parameter_descriptions
-/camera/depth/image/compressed/parameter_updates
-/camera/depth/image_raw
-/camera/depth/image_raw/compressed
-/camera/depth/image_raw/compressedDepth
-/camera/depth/image_raw/compressedDepth/parameter_descriptions
-/camera/depth/image_raw/compressedDepth/parameter_updates
-/camera/depth/image_raw/compressed/parameter_descriptions
-/camera/depth/image_raw/compressed/parameter_updates
-/camera/depth/image_raw/theora
-/camera/depth/image_raw/theora/parameter_descriptions
-/camera/depth/image_raw/theora/parameter_updates
-/camera/depth/image_rect
-/camera/depth/image_rect/compressed
-/camera/depth/image_rect/compressedDepth
-
-rosrun tf view_frames 
-Listening to /tf for 5.0 seconds
-Done Listening
-b'dot - graphviz version 2.43.0 (0)\n'
-Traceback (most recent call last):
-  File "/opt/ros/noetic/lib/tf/view_frames", line 119, in <module>
-    generate(dot_graph)
-  File "/opt/ros/noetic/lib/tf/view_frames", line 89, in generate
-    m = r.search(vstr)
-TypeError: cannot use a string pattern on a bytes-like object
+[ WARN] [1760846367.058732491]: The time difference between rgb and depth frames is high (diff=0.010186s, rgb=1760846367.020490s, depth=1760846367.030676s). You may want to set approx_sync_max_interval lower than 0.01s to reject spurious bad synchronizations or use approx_sync=false if streams have all the exact same timestamp.
+[ WARN] [1760846367.090653443]: The time difference between rgb and depth frames is high (diff=0.012063s, rgb=1760846367.054489s, depth=1760846367.066552s). You may want to set approx_sync_max_interval lower than 0.01s to reject spurious bad synchronizations or use approx_sync=false if streams have all the exact same timestamp.
+[ WARN] [1760846367.157200815]: The time difference between rgb and depth frames is high (diff=0.011739s, rgb=1760846367.120475s, depth=1760846367.132214s). You may want to set approx_sync_max_interval lower than 0.01s to reject spurious bad synchronizations or use approx_sync=false if streams have all the exact same timestamp.
+[ WARN] [1760846367.166450823]: Could not get transform from base_link to camera_rgb_optical_frame after 0.100000 seconds (for stamp=1760846367.030676)! Error="Could not find a connection between 'base_link' and 'camera_rgb_optical_frame' because they are not part of the same tree.Tf has two or more unconnected trees.. canTransform returned after 0.100866 timeout was 0.1.".
+[ WARN] [1760846367.190120988]: The time difference between rgb and depth frames is high (diff=0.012222s, rgb=1760846367.154286s, depth=1760846367.166508s). You may want to set approx_sync_max_interval lower than 0.01s to reject spurious bad synchronizations or use approx_sync=false if streams have all the exact same timestamp.
+[ WARN] [1760846367.223509893]: The time difference between rgb and depth frames is high (diff=0.012096s, rgb=1760846367.188432s, depth=1760846367.200528s). You may want to set approx_sync_max_interval lower than 0.01s to reject spurious bad synchronizations or use approx_sync=false if streams have all the exact same timestamp.
+[ WARN] [1760846367.256433334]: The time difference between rgb and depth frames is high (diff=0.012414s, rgb=1760846367.220390s, depth=1760846367.232804s). You may want to set approx_sync_max_interval lower than 0.01s to reject spurious bad synchronizations or use approx_sync=false if streams have all the exact same timestamp.
+[ WARN] [1760846367.268636959]: Could not get transform from base_link to camera_rgb_optical_frame after 0.100000 seconds (for stamp=1760846367.132214)! Error="Could not find a connection between 'base_link' and 'camera_rgb_optical_frame' because they are not part of the same tree.Tf has two or more unconnected trees.. canTransform returned after 0.100189 timeout was 0.1.".
+[ WARN] [1760846367.290224499]: The time difference between rgb and depth frames is high (diff=0.012228s, rgb=1760846367.254381s, depth=1760846367.266609s). You may want to set approx_sync_max_interval lower than 0.01s to reject spurious bad synchronizations or use approx_sync=false if streams have all the exact same timestamp.
+[ WARN] [1760846367.322535380]: The time difference between rgb and depth frames is high (diff=0.013088s, rgb=1760846367.288389s, depth=1760846367.301478s). You may want to set approx_sync_max_interval lower than 0.01s to reject spurious bad synchronizations or use approx_sync=false if streams have all the exact same timestamp.
+[ WARN] [1760846367.357159500]: The time difference between rgb and depth frames is high (diff=0.012277s, rgb=1760846367.320446s, depth=1760846367.332723s). You may want to set approx_sync_max_interval lower than 0.01s to reject spurious bad synchronizations or use approx_sync=false if streams have all the exact same timestamp.
+[ WARN] [1760846367.370427459]: Could not get transform from base_link to camera_rgb_optical_frame after 0.100000 seconds (for stamp=1760846367.232804)! Error="Could not find a connection between 'base_link' and 'camera_rgb_optical_frame' because they are not part of the same tree.Tf has two or more unconnected trees.. canTransform returned after 0.101014 timeout was 0.1.".
+[ WARN] [1760846367.390798499]: The time difference between rgb and depth frames is high (diff=0.012769s, rgb=1760846367.354448s, depth=1760846367.367218s). You may want to set approx_sync_max_interval lower than 0.01s to reject spurious bad synchronizations or use approx_sync=false if streams have all the exact same timestamp.
+[ WARN] [1760846367.423583411]: The time difference between rgb and depth frames is high (diff=0.011939s, rgb=1760846367.388366s, depth=1760846367.400304s). You may want to set approx_sync_max_interval lower than 0.01s to reject spurious bad synchronizations or use approx_sync=false if streams have all the exact same timestamp.
+[ WARN] [1760846367.456777145]: The time difference between rgb and depth frames is high (diff=0.011949s, rgb=1760846367.420383s, depth=1760846367.432332s). You may want to set approx_sync_max_interval lower than 0.01s to reject spurious bad synchronizations or use approx_sync=false if streams have all the exact same timestamp.
+[ WARN] [1760846367.471713590]: Could not get transform from base_link to camera_rgb_optical_frame after 0.100000 seconds (for stamp=1760846367.332723)! Error="Could not find a connection between 'base_link' and 'camera_rgb_optical_frame' because they are not part of the same tree.Tf has two or more unconnected trees.. canTransform returned after 0.100598 timeout was 0.1.".
+[ WARN] [1760846367.491065267]: The time difference between rgb and depth frames is high (diff=0.012239s, rgb=1760846367.454354s, depth=1760846367.466593s). You may want to set approx_sync_max_interval lower than 0.01s to reject spurious bad synchronizations or use approx_sync=false if streams have all the exact same timestamp.
+[ WARN] [1760846367.523180274]: The time difference between rgb and depth frames is high (diff=0.013257s, rgb=1760846367.488353s, depth=1760846367.501611s). You may want to set approx_sync_max_interval lower than 0.01s to reject spurious bad synchronizations or use approx_sync=false if streams have all the exact same timestamp.
+[ WARN] [1760846367.557076515]: The time difference between rgb and depth frames is high (diff=0.012276s, rgb=1760846367.520295s, depth=1760846367.532571s). You may want to set approx_sync_max_interval lower than 0.01s to reject spurious bad synchronizations or use approx_sync=false if streams have all the exact same timestamp.
+[ WARN] [1760846367.573265531]: Could not get transform from base_link to camera_rgb_optical_frame after 0.100000 seconds (for stamp=1760846367.432332)! Error="Could not find a connection between 'base_link' and 'camera_rgb_optical_frame' because they are not part of the same tree.Tf has two or more unconnected trees.. canTransform returned after 0.100871 timeout was 0.1.".
+[ WARN] [1760846367.591227739]: The time difference between rgb and depth frames is high (diff=0.011701s, rgb=1760846367.554379s, depth=1760846367.566080s). You may want to set approx_sync_max_interval lower than 0.01s to reject spurious bad synchronizations or use approx_sync=false if streams have all the exact same timestamp.
+[ WARN] [1760846367.622240018]: The time difference between rgb and depth frames is high (diff=0.011471s, rgb=1760846367.588415s, depth=1760846367.599886s). You may want to set approx_sync_max_interval lower than 0.01s to reject spurious bad synchronizations or use approx_sync=false if streams have all the exact same timestamp.
+[ WARN] [1760846367.656597236]: The time difference between rgb and depth frames is high (diff=0.010989s, rgb=1760846367.620358s, depth=1760846367.631347s). You may want to set approx_sync_max_interval lower than 0.01s to reject spurious bad synchronizations or use approx_sync=false if streams have all the exact same timestamp.
+[ WARN] [1760846367.674593216]: Could not get transform from base_link to camera_rgb_optical_frame after 0.100000 seconds (for stamp=1760846367.532571)! Error="Could not find a connection between 'base_link' and 'camera_rgb_optical_frame' because they are not part of the same tree.Tf has two or more unconnected trees.. canTransform returned after 0.100855 timeout was 0.1.".
+[ WARN] [1760846367.690475878]: The time difference between rgb and depth frames is high (diff=0.011926s, rgb=1760846367.654451s, depth=1760846367.666377s). You may want to set approx_sync_max_interval lower than 0.01s to reject spurious bad synchronizations or use approx_sync=false if streams have all the exact same timestamp.
+[ WARN] [1760846367.723142484]: The time difference between rgb and depth frames is high (diff=0.011768s, rgb=1760846367.688439s, depth=1760846367.700207s). You may want to set approx_sync_max_interval lower than 0.01s to reject spurious bad synchronizations or use approx_sync=false if streams have all the exact same timestamp.
+[ WARN] [1760846367.756549827]: The time difference between rgb and depth frames is high (diff=0.011467s, rgb=1760846367.720461s, depth=1760846367.731928s). You may want to set approx_sync_max_interval lower than 0.01s to reject spurious bad synchronizations or use approx_sync=false if streams have all the exact same timestamp.
+[ WARN] [1760846367.775646515]: Could not get transform from base_link to camera_rgb_optical_frame after 0.100000 seconds (for stamp=1760846367.631347)! Error="Could not find a connection between 'base_link' and 'camera_rgb_optical_frame' because they are not part of the same tree.Tf has two or more unconnected trees.. canTransform returned after 0.100298 timeout was 0.1.".
+[ WARN] [1760846367.790525902]: The time difference between rgb and depth frames is high (diff=0.011177s, rgb=1760846367.754367s, depth=1760846367.765544s). You may want to set approx_sync_max_interval lower than 0.01s to reject spurious bad synchronizations or use approx_sync=false if streams have all the exact same timestamp.
+[ WARN] [1760846367.822300139]: The time difference between rgb and depth frames is high (diff=0.011315s, rgb=1760846367.788440s, depth=1760846367.799755s). You may want to set approx_sync_max_interval lower than 0.01s to reject spurious bad synchronizations or use approx_sync=false if streams have all the exact same timestamp.
+[ WARN] [1760846367.856439889]: The time difference between rgb and depth frames is high (diff=0.013975s, rgb=1760846367.820368s, depth=1760846367.834343s). You may want to set approx_sync_max_interval lower than 0.01s to reject spurious bad synchronizations or use approx_sync=false if streams have all the exact same timestamp.
+[ WARN] [1760846367.877082417]: Could not get transform from base_link to camera_rgb_optical_frame after 0.100000 seconds (for stamp=1760846367.731928)! Error="Could not find a connection between 'base_link' and 'camera_rgb_optical_frame' because they are not part of the same tree.Tf has two or more unconnected trees.. canTransform returned after 0.100775 timeout was 0.1.".
+[ WARN] [1760846367.890232672]: The time difference between rgb and depth frames is high (diff=0.012012s, rgb=1760846367.854431s, depth=1760846367.866443s). You may want to set approx_sync_max_interval lower than 0.01s to reject spurious bad synchronizations or use approx_sync=false if streams have all the exact same timestamp.
+[ WARN] [1760846367.922010904]: The time difference between rgb and depth frames is high (diff=0.011498s, rgb=1760846367.888384s, depth=1760846367.899882s). You may want to set approx_sync_max_interval lower than 0.01s to reject spurious bad synchronizations or use approx_sync=false if streams have all the exact same timestamp.
+[ WARN] [1760846367.956286946]: The time difference between rgb and depth frames is high (diff=0.013700s, rgb=1760846367.920348s, depth=1760846367.934048s). You may want to set approx_sync_max_interval lower than 0.01s to reject spurious bad synchronizations or use approx_sync=false if streams have all the exact same timestamp.
+[ WARN] [1760846367.978657809]: Could not get transform from base_link to camera_rgb_optical_frame after 0.100000 seconds (for stamp=1760846367.834343)! Error="Could not find a connection between 'base_link' and 'camera_rgb_optical_frame' because they are not part of the same tree.Tf has two or more unconnected trees.. canTransform returned after 0.100308 timeout was 0.1.".
+[ WARN] [1760846367.990657548]: The time difference between rgb and depth frames is high (diff=0.011786s, rgb=1760846367.954335s, depth=1760846367.966121s). You may want to set approx_sync_max_interval lower than 0.01s to reject spurious bad synchronizations or use approx_sync=false if streams have all the exact same timestamp.
+[ WARN] [1760846368.022248621]: The time difference between rgb and depth frames is high (diff=0.011796s, rgb=1760846367.988472s, depth=1760846368.000268s). You may want to set approx_sync_max_interval lower than 0.01s to reject spurious bad synchronizations or use approx_sync=false if streams have all the exact same timestamp.
+[ WARN] [1760846368.056049337]: The time difference between rgb and depth frames is high (diff=0.013237s, rgb=1760846368.020471s, depth=1760846368.033708s). You may want to set approx_sync_max_interval lower than 0.01s to reject spurious bad synchronizations or use approx_sync=false if streams have all the exact same timestamp.
+[ WARN] [1760846368.079685104]: Could not get transform from base_link to camera_rgb_optical_frame after 0.100000 seconds (for stamp=1760846367.934048)! Error="Could not find a connection between 'base_link' and 'camera_rgb_optical_frame' because they are not part of the same tree.Tf has two or more unconnected trees.. canTransform returned after 0.10027 timeout was 0.1.".
+[ WARN] [1760846368.090372317]: The time difference between rgb and depth frames is high (diff=0.010587s, rgb=1760846368.054460s, depth=1760846368.065047s). You may want to set approx_sync_max_interval lower than 0.01s to reject spurious bad synchronizations or use approx_sync=false if streams have all the exact same timestamp.
+[ WARN] [1760846368.122532482]: The time difference between rgb and depth frames is high (diff=0.011876s, rgb=1760846368.088467s, depth=1760846368.100343s). You may want to set approx_sync_max_interval lower than 0.01s to reject spurious bad synchronizations or use approx_sync=false if streams have all the exact same timestamp.
+[ WARN] [1760846368.156600651]: The time difference between rgb and depth frames is high (diff=0.014777s, rgb=1760846368.120474s, depth=1760846368.135251s). You may want to set approx_sync_max_interval lower than 0.01s to reject spurious bad synchronizations or use approx_sync=false if streams have all the exact same timestamp.
+[ WARN] [1760846368.181618054]: Could not get transform from base_link to camera_rgb_optical_frame after 0.100000 seconds (for stamp=1760846368.033708)! Error="Could not find a connection between 'base_link' and 'camera_rgb_optical_frame' because they are not part of the same tree.Tf has two or more unconnected trees.. canTransform returned after 0.101213 timeout was 0.1.".
+[ WARN] [1760846368.191074635]: The time difference between rgb and depth frames is high (diff=0.012494s, rgb=1760846368.154325s, depth=1760846368.166819s). You may want to set approx_sync_max_interval lower than 0.01s to reject spurious bad synchronizations or use approx_sync=false if streams have all the exact same timestamp.
+[ WARN] [1760846368.222866441]: The time difference between rgb and depth frames is high (diff=0.012782s, rgb=1760846368.188409s, depth=1760846368.201191s). You may want to set approx_sync_max_interval lower than 0.01s to reject spurious bad synchronizations or use approx_sync=false if streams have all the exact same timestamp.
+[ WARN] [1760846368.256590300]: The time difference between rgb and depth frames is high (diff=0.013882s, rgb=1760846368.220385s, depth=1760846368.234267s). You may want to set approx_sync_max_interval lower than 0.01s to reject spurious bad synchronizations or use approx_sync=false if streams have all the exact same timestamp.
+[ WARN] [1760846368.283212792]: Could not get transform from base_link to camera_rgb_optical_frame after 0.100000 seconds (for stamp=1760846368.135251)! Error="Could not find a connection between 'base_link' and 'camera_rgb_optical_frame' because they are not part of the same tree.Tf has two or more unconnected trees.. canTransform returned after 0.100553 timeout was 0.1.".
+[ WARN] [1760846368.291229261]: The time difference between rgb and depth frames is high (diff=0.012439s, rgb=1760846368.254371s, depth=1760846368.266810s). You may want to set approx_sync_max_interval lower than 0.01s to reject spurious bad synchronizations or use approx_sync=false if streams have all the exact same timestamp.
+[ WARN] [1760846368.323162264]: The time difference between rgb and depth frames is high (diff=0.012123s, rgb=1760846368.288376s, depth=1760846368.300499s). You may want to set approx_sync_max_interval lower than 0.01s to reject spurious bad synchronizations or use approx_sync=false if streams have all the exact same timestamp.
+[ WARN] [1760846368.356182441]: The time difference between rgb and depth frames is high (diff=0.013535s, rgb=1760846368.320411s, depth=1760846368.333946s). You may want to set approx_sync_max_interval lower than 0.01s to reject spurious bad synchronizations or use approx_sync=false if streams have all the exact same timestamp.
+[ WARN] [1760846368.384322616]: Could not get transform from base_link to camera_rgb_optical_frame after 0.100000 seconds (for stamp=1760846368.234267)! Error="Could not find a connection between 'base_link' and 'camera_rgb_optical_frame' because they are not part of the same tree.Tf has two or more unconnected trees.. canTransform returned after 0.100149 timeout was 0.1.".
+[ WARN] [1760846368.390203958]: The time difference between rgb and depth frames is high (diff=0.011253s, rgb=1760846368.354441s, depth=1760846368.365694s). You may want to set approx_sync_max_interval lower than 0.01s to reject spurious bad synchronizations or use approx_sync=false if streams have all the exact same timestamp.
+[ WARN] [1760846368.423822448]: The time difference between rgb and depth frames is high (diff=0.011173s, rgb=1760846368.388420s, depth=1760846368.399593s). You may want to set approx_sync_max_interval lower than 0.01s to reject spurious bad synchronizations or use approx_sync=false if streams have all the exact same timestamp.
+[ WARN] [1760846368.457305379]: The time difference between rgb and depth frames is high (diff=0.013549s, rgb=1760846368.420468s, depth=1760846368.434017s). You may want to set approx_sync_max_interval lower than 0.01s to reject spurious bad synchronizations or use approx_sync=false if streams have all the exact same timestamp.
+[ WARN] [1760846368.485680806]: Could not get transform from base_link to camera_rgb_optical_frame after 0.100000 seconds (for stamp=1760846368.333946)! Error="Could not find a connection between 'base_link' and 'camera_rgb_optical_frame' because they are not part of the same tree.Tf has two or more unconnected trees.. canTransform returned after 0.10089 timeout was 0.1.".
+[ WARN] [1760846368.491556419]: The time difference between rgb and depth frames is high (diff=0.014551s, rgb=1760846368.454388s, depth=1760846368.468939s). You may want to set approx_sync_max_interval lower than 0.01s to reject spurious bad synchronizations or use approx_sync=false if streams have all the exact same timestamp.
+[ WARN] [1760846368.522000309]: The time difference between rgb and depth frames is high (diff=0.011024s, rgb=1760846368.488431s, depth=1760846368.499456s). You may want to set approx_sync_max_interval lower than 0.01s to reject spurious bad synchronizations or use approx_sync=false if streams have all the exact same timestamp.
+[ WARN] [1760846368.557648463]: The time difference between rgb and depth frames is high (diff=0.013002s, rgb=1760846368.520390s, depth=1760846368.533392s). You may want to set approx_sync_max_interval lower than 0.01s to reject spurious bad synchronizations or use approx_sync=false if streams have all the exact same timestamp.
+[ WARN] [1760846368.587458831]: Could not get transform from base_link to camera_rgb_optical_frame after 0.100000 seconds (for stamp=1760846368.434017)! Error="Could not find a connection between 'base_link' and 'camera_rgb_optical_frame' because they are not part of the same tree.Tf has two or more unconnected trees.. canTransform returned after 0.101021 timeout was 0.1.".
+[ WARN] [1760846368.590135273]: The time difference between rgb and depth frames is high (diff=0.012644s, rgb=1760846368.554390s, depth=1760846368.567034s). You may want to set approx_sync_max_interval lower than 0.01s to reject spurious bad synchronizations or use approx_sync=false if streams have all the exact same timestamp.
+[ WARN] [1760846368.622486972]: The time difference between rgb and depth frames is high (diff=0.012123s, rgb=1760846368.588354s, depth=1760846368.600477s). You may want to set approx_sync_max_interval lower than 0.01s to reject spurious bad synchronizations or use approx_sync=false if streams have all the exact same timestamp.
+[ WARN] [1760846368.656753534]: The time difference between rgb and depth frames is high (diff=0.012775s, rgb=1760846368.620379s, depth=1760846368.633154s). You may want to set approx_sync_max_interval lower than 0.01s to reject spurious bad synchronizations or use approx_sync=false if streams have all the exact same timestamp.
+[ WARN] [1760846368.689379400]: Could not get transform from base_link to camera_rgb_optical_frame after 0.100000 seconds (for stamp=1760846368.533392)! Error="Could not find a connection between 'base_link' and 'camera_rgb_optical_frame' because they are not part of the same tree.Tf has two or more unconnected trees.. canTransform returned after 0.101097 timeout was 0.1.".
+[ WARN] [1760846368.691029345]: The time difference between rgb and depth frames is high (diff=0.012975s, rgb=1760846368.654362s, depth=1760846368.667337s). You may want to set approx_sync_max_interval lower than 0.01s to reject spurious bad synchronizations or use approx_sync=false if streams have all the exact same timestamp.
+[ WARN] [1760846368.722635831]: The time difference between rgb and depth frames is high (diff=0.011469s, rgb=1760846368.688411s, depth=1760846368.699880s). You may want to set approx_sync_max_interval lower than 0.01s to reject spurious bad synchronizations or use approx_sync=false if streams have all the exact same timestamp.
+[ WARN] [1760846368.756664856]: The time difference between rgb and depth frames is high (diff=0.013561s, rgb=1760846368.720381s, depth=1760846368.733943s). You may want to set approx_sync_max_interval lower than 0.01s to reject spurious bad synchronizations or use approx_sync=false if streams have all the exact same timestamp.
+[ WARN] [1760846368.790101955]: The time difference between rgb and depth frames is high (diff=0.014968s, rgb=1760846368.754344s, depth=1760846368.769312s). You may want to set approx_sync_max_interval lower than 0.01s to reject spurious bad synchronizations or use approx_sync=false if streams have all the exact same timestamp.
+[ WARN] [1760846368.791362903]: Could not get transform from base_link to camera_rgb_optical_frame after 0.100000 seconds (for stamp=1760846368.633154)! Error="Could not find a connection between 'base_link' and 'camera_rgb_optical_frame' because they are not part of the same tree.Tf has two or more unconnected trees.. canTransform returned after 0.100917 timeout was 0.1.".
+[ WARN] [1760846368.822335424]: The time difference between rgb and depth frames is high (diff=0.011365s, rgb=1760846368.788311s, depth=1760846368.799675s). You may want to set approx_sync_max_interval lower than 0.01s to reject spurious bad synchronizations or use approx_sync=false if streams have all the exact same timestamp.
+[ INFO] [1760846368.845285693]: Stopping device RGB and Depth stream flush.
+[ WARN] [1760846368.893331682]: Could not get transform from base_link to camera_rgb_optical_frame after 0.100000 seconds (for stamp=1760846368.769312)! Error="Could not find a connection between 'base_link' and 'camera_rgb_optical_frame' because they are not part of the same tree.Tf has two or more unconnected trees.. canTransform returned after 0.101086 timeout was 0.1.".
+[ WARN] [1760846368.994842251]: Could not get transform from base_link to camera_rgb_optical_frame after 0.100000 seconds (for stamp=1760846368.799675)! Error="Could not find a connection between 'base_link' and 'camera_rgb_optical_frame' because they are not part of the same tree.Tf has two or more unconnected trees.. canTransform returned after 0.100679 timeout was 0.1.".
+[ WARN] [1760846369.122846880]: The time difference between rgb and depth frames is high (diff=0.013127s, rgb=1760846368.820366s, depth=1760846368.833493s). You may want to set approx_sync_max_interval lower than 0.01s to reject spurious bad synchronizations or use approx_sync=false if streams have all the exact same timestamp.
