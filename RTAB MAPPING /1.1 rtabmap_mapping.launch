@@ -68,6 +68,6 @@
     </node>
   </group>
 
-  <node name="rviz" pkg="rviz" type="rviz" args="-d $(find autonomus_mobile_robot)/config/rtabmap_config.rviz" required="true" />
+  <node name="rviz" pkg="rviz" type="rviz" args="-d $(find autonomus_mobile_robot)/config/amcl_nav.rviz" required="true" />
 
 </launch>
