@@ -1,1 +1,6 @@
 wget https://raw.githubusercontent.com/introlab/rtabmap_ros/ros1/rtabmap_ros.rosinstall
+--2025-10-19 13:41:58--  https://raw.githubusercontent.com/introlab/rtabmap_ros/ros1/rtabmap_ros.rosinstall
+Resolving raw.githubusercontent.com (raw.githubusercontent.com)... 185.199.109.133, 185.199.108.133, 185.199.110.133, ...
+Connecting to raw.githubusercontent.com (raw.githubusercontent.com)|185.199.109.133|:443... connected.
+HTTP request sent, awaiting response... 404 Not Found
+2025-10-19 13:41:58 ERROR 404: Not Found.
