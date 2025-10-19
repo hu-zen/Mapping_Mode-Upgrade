@@ -1,56 +1,16 @@
-<launch>
-    <include file="$(find freenect_launch)/launch/freenect.launch">
-        <arg name="depth_registration" value="true" />
-    </include>
-
-    <node pkg="depthimage_to_laserscan" type="depthimage_to_laserscan" name="depthimage_to_laserscan">
-        <remap from="image" to="/camera/depth_registered/image_raw"/>
-        <remap from="scan" to="/scan"/>
-        <param name="range_max" type="double" value="4.5"/>
-        <param name="output_frame_id" type="str" value="camera_depth_frame"/>
-    </node>
-
-    <node pkg="rosserial_python" type="serial_node.py" name="serial_node_sensors" output="screen">
-        <param name="port" value="/dev/ttyUSB1"/>
-        <param name="baud" value="115200"/>
-    </node>
-    
-    <param name="robot_description" command="$(find xacro)/xacro $(find autonomus_mobile_robot)/urdf/mobile_robot.urdf.xacro"/>
-    <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" />
-    <node pkg="tf" type="static_transform_publisher" name="base_to_camera_broadcaster" args="0 0 0.83 0 0 0 base_link camera_link 100" />
-    
-    <node pkg="imu_filter_madgwick" type="imu_filter_node" name="imu_filter">
-        <param name="use_mag" value="false"/>
-        <param name="publish_tf" value="false"/>
-        <remap from="/imu/data_raw" to="/imu/data"/>
-        <remap from="/imu/data" to="/imu/data_filtered"/>
-    </node>
-    
-    <node pkg="robot_pose_ekf" type="robot_pose_ekf" name="robot_pose_ekf">
-        <param name="output_frame" value="odom"/>
-        <param name="base_footprint_frame" value="base_footprint"/>
-        <param name="odom_used" value="true"/>
-        <param name="imu_used" value="true"/>
-        <param name="vo_used" value="false"/> 
-        <remap from="odom" to="/odom_data_quat" />
-        <remap from="imu_data" to="/imu/data_filtered" /> 
-    </node>
-
-    <node pkg="hector_mapping" type="hector_mapping" name="hector_mapping" output="screen">
-        <param name="map_frame" value="map" />
-        <param name="base_frame" value="base_link" />
-        <param name="odom_frame" value="odom" /> 
-        
-        <param name="use_tf_scan_transformation" value="true"/>
-        <param name="pub_map_odom_transform" value="true"/>
-        <remap from="scan" to="/scan"/>
-        
-        <param name="map_size" value="2048"/>
-        <param name="map_resolution" value="0.05"/>
-        <param name="map_update_distance_thresh" value="0.2"/>
-        <param name="map_update_angle_thresh" value="0.2"/>
-    </node>
-    
-    <node name="rviz" pkg="rviz" type="rviz" required="true"
-          args="-d $(find autonomus_mobile_robot)/config/amcl_nav.rviz" />
-</launch>
+INFO] [1760858801.497623302]: HectorSM p_update_factor_occupied_: 0.900000
+[ INFO] [1760858801.497633812]: HectorSM p_map_update_distance_threshold_: 0.200000 
+[ INFO] [1760858801.497644998]: HectorSM p_map_update_angle_threshold_: 0.200000
+[ INFO] [1760858801.497654974]: HectorSM p_laser_z_min_value_: -1.000000
+[ INFO] [1760858801.497666559]: HectorSM p_laser_z_max_value_: 1.000000
+[ WARN] [1760858801.586537458]: Could not find any compatible depth output mode for 1. Falling back to default depth output mode 1.
+[ INFO] [1760858801.597614098]: rgb_frame_id = 'camera_rgb_optical_frame' 
+[ INFO] [1760858801.599737086]: depth_frame_id = 'camera_depth_optical_frame' 
+[ WARN] [1760858801.611828939]: Camera calibration file /home/iascr/.ros/camera_info/rgb_A00367908097045A.yaml not found.
+[ WARN] [1760858801.611929920]: Using default parameters for RGB camera calibration.
+[ WARN] [1760858801.611991319]: Camera calibration file /home/iascr/.ros/camera_info/depth_A00367908097045A.yaml not found.
+[ WARN] [1760858801.612030335]: Using default parameters for IR camera calibration.
+[INFO] [1760858801.685354]: ROS Serial Python Node
+[INFO] [1760858801.693475]: Connecting to /dev/ttyUSB1 at 115200 baud
+[ERROR] [1760858802.923361746]: Transform failed during publishing of map_odom transform: "odom" passed to lookupTransform argument target_frame does not exist. 
+[ERROR] [1760858803.427010789]: Transform failed during publishing of map_odom transform: Lookup would require extrapolation at time 1760858802.749948263, but only time 1760858802.418024778 is in the buffe, when looking up transform from frame [base_link] to frame [odom]
