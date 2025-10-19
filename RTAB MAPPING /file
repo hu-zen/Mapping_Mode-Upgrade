@@ -1,31 +1,15 @@
-HectorSM map lvl 0: cellLength: 0.05 res x:2048 res y: 2048
-[ INFO] [1760854466.176988440]: Number devices connected: 1
-[ INFO] [1760854466.177275801]: 1. device on bus 000:00 is a Xbox NUI Camera (2ae) from Microsoft (45e) with serial id 'A00367908097045A'
-[ INFO] [1760854466.178288046]: Searching for device with index = 1
-HectorSM map lvl 1: cellLength: 0.1 res x:1024 res y: 1024
-HectorSM map lvl 2: cellLength: 0.2 res x:512 res y: 512
-[ INFO] [1760854466.192907092]: HectorSM p_base_frame_: base_link
-[ INFO] [1760854466.193791033]: HectorSM p_map_frame_: map
-[ INFO] [1760854466.193798012]: HectorSM p_odom_frame_: base_link
-[ INFO] [1760854466.193802719]: HectorSM p_scan_topic_: scan
-[ INFO] [1760854466.193807102]: HectorSM p_use_tf_scan_transformation_: true
-[ INFO] [1760854466.193811672]: HectorSM p_pub_map_odom_transform_: true
-[ INFO] [1760854466.193815789]: HectorSM p_scan_subscriber_queue_size_: 5
-[ INFO] [1760854466.193823900]: HectorSM p_map_pub_period_: 2.000000
-[ INFO] [1760854466.193828763]: HectorSM p_update_factor_free_: 0.400000
-[ INFO] [1760854466.193833148]: HectorSM p_update_factor_occupied_: 0.900000
-[ INFO] [1760854466.193838737]: HectorSM p_map_update_distance_threshold_: 0.200000 
-[ INFO] [1760854466.193843180]: HectorSM p_map_update_angle_threshold_: 0.040000
-[ INFO] [1760854466.193847260]: HectorSM p_laser_z_min_value_: -1.000000
-[ INFO] [1760854466.193851694]: HectorSM p_laser_z_max_value_: 1.000000
-[ INFO] [1760854466.421192758]: Starting a 3s RGB and Depth stream flush.
-[ INFO] [1760854466.421411905]: Opened 'Xbox NUI Camera' on bus 0:0 with serial number 'A00367908097045A'
-[ WARN] [1760854466.428638484]: Could not find any compatible image output mode for 1. Falling back to default image output mode 1.
-[ WARN] [1760854466.428728607]: Could not find any compatible depth output mode for 1. Falling back to default depth output mode 1.
-[ INFO] [1760854466.431106585]: rgb_frame_id = 'camera_rgb_optical_frame' 
-[ INFO] [1760854466.431153837]: depth_frame_id = 'camera_depth_optical_frame' 
-[ WARN] [1760854466.433293355]: Camera calibration file /home/iascr/.ros/camera_info/rgb_A00367908097045A.yaml not found.
-[ WARN] [1760854466.433338091]: Using default parameters for RGB camera calibration.
-[ WARN] [1760854466.433363036]: Camera calibration file /home/iascr/.ros/camera_info/depth_A00367908097045A.yaml not found.
-[ WARN] [1760854466.433389031]: Using default parameters for IR camera calibration.
-[ INFO] [1760854469.423623859]: Stopping device RGB and Depth stream flush.
+[ INFO] [1760854951.810402997]: Starting a 3s RGB and Depth stream flush.
+[ERROR] [1760854952.384806082]: Transform failed during publishing of map_odom transform: "odom" passed to lookupTransform argument target_frame does not exist. 
+[ERROR] [1760854952.886645106]: Transform failed during publishing of map_odom transform: Lookup would require extrapolation at time 1760854952.209803820, but only time 1760854951.876709223 is in the buffe, when looking up transform from frame [base_link] to frame [odom]
+[ERROR] [1760854953.389013390]: Transform failed during publishing of map_odom transform: Lookup would require extrapolation 0.501562642s into the future.  Requested time 1760854952.711366415 but the latest data is at time 1760854952.209803820, when looking up transform from frame [base_link] to frame [odom]
+SearchDir angle change too large
+[ERROR] [1760854953.890126649]: Transform failed during publishing of map_odom transform: Lookup would require extrapolation 0.501248254s into the future.  Requested time 1760854953.212614536 but the latest data is at time 1760854952.711366415, when looking up transform from frame [base_link] to frame [odom]
+[ERROR] [1760854954.392563968]: Transform failed during publishing of map_odom transform: Lookup would require extrapolation 0.531327726s into the future.  Requested time 1760854953.743942261 but the latest data is at time 1760854953.212614536, when looking up transform from frame [base_link] to frame [odom]
+[ INFO] [1760854954.813172991]: Stopping device RGB and Depth stream flush.
+[ERROR] [1760854954.896549541]: Transform failed during publishing of map_odom transform: Lookup would require extrapolation 0.469859519s into the future.  Requested time 1760854954.213801861 but the latest data is at time 1760854953.743942261, when looking up transform from frame [base_link] to frame [odom]
+[ERROR] [1760854955.401895731]: Transform failed during publishing of map_odom transform: Lookup would require extrapolation 0.498021795s into the future.  Requested time 1760854954.711823702 but the latest data is at time 1760854954.213801861, when looking up transform from frame [base_link] to frame [odom]
+SearchDir angle change too large
+[ERROR] [1760854955.907237266]: Transform failed during publishing of map_odom transform: Lookup would require extrapolation 0.533102512s into the future.  Requested time 1760854955.244926214 but the latest data is at time 1760854954.711823702, when looking up transform from frame [base_link] to frame [odom]
+[ERROR] [1760854956.412762723]: Transform failed during publishing of map_odom transform: Lookup would require extrapolation 0.502226330s into the future.  Requested time 1760854955.747152567 but the latest data is at time 1760854955.244926214, when looking up transform from frame [base_link] to frame [odom]
+[ERROR] [1760854956.914999646]: Transform failed during publishing of map_odom transform: Lookup would require extrapolation 0.502418189s into the future.  Requested time 1760854956.249570608 but the latest data is at time 1760854955.747152567, when looking up transform from frame [base_link] to frame [odom]
+SearchDir angle change too large
