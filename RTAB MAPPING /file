@@ -1,43 +1,75 @@
-rostopic hz /robot_pose_ekf/odom_combined 
-subscribed to [/robot_pose_ekf/odom_combined]
-average rate: 17.582
-	min: 0.033s max: 0.067s std dev: 0.01528s window: 18
-average rate: 19.827
-	min: 0.033s max: 0.067s std dev: 0.01675s window: 40
-average rate: 19.887
-	min: 0.033s max: 0.067s std dev: 0.01676s window: 60
+catkin_make -j4
+Base path: /home/iascr/catkin_ws
+Source space: /home/iascr/catkin_ws/src
+Build space: /home/iascr/catkin_ws/build
+Devel space: /home/iascr/catkin_ws/devel
+Install space: /home/iascr/catkin_ws/install
+####
+#### Running command: "cmake /home/iascr/catkin_ws/src -DCATKIN_DEVEL_PREFIX=/home/iascr/catkin_ws/devel -DCMAKE_INSTALL_PREFIX=/home/iascr/catkin_ws/install -G Unix Makefiles" in "/home/iascr/catkin_ws/build"
+####
+-- Using CATKIN_DEVEL_PREFIX: /home/iascr/catkin_ws/devel
+-- Using CMAKE_PREFIX_PATH: /home/iascr/Ybot_ws/devel;/home/iascr/catkin_ws/devel;/opt/ros/noetic
+-- This workspace overlays: /home/iascr/Ybot_ws/devel;/home/iascr/catkin_ws/devel;/opt/ros/noetic
+-- Found PythonInterp: /usr/bin/python3 (found suitable version "3.8.10", minimum required is "3") 
+-- Using PYTHON_EXECUTABLE: /usr/bin/python3
+-- Using Debian Python package layout
+-- Using empy: /usr/lib/python3/dist-packages/em.py
+-- Using CATKIN_ENABLE_TESTING: ON
+-- Call enable_testing()
+-- Using CATKIN_TEST_RESULTS_DIR: /home/iascr/catkin_ws/build/test_results
+-- Forcing gtest/gmock from source, though one was otherwise available.
+-- Found gtest sources under '/usr/src/googletest': gtests will be built
+-- Found gmock sources under '/usr/src/googletest': gmock will be built
+-- Found PythonInterp: /usr/bin/python3 (found version "3.8.10") 
+-- Using Python nosetests: /usr/bin/nosetests3
+-- catkin 0.8.10
+-- BUILD_SHARED_LIBS is on
+-- BUILD_SHARED_LIBS is on
+-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+-- ~~  traversing 27 packages in topological order:
+-- ~~  - freenect_launch
+-- ~~  - freenect_stack
+-- ~~  - rtabmap_demos (plain cmake)
+-- ~~  - rtabmap_examples (plain cmake)
+-- ~~  - rtabmap_launch (plain cmake)
+-- ~~  - rtabmap_python (unknown)
+CMake Warning at /opt/ros/noetic/share/catkin/cmake/catkin_workspace.cmake:89 (message):
+  Unknown build type 'ament_python' for package 'rtabmap_python'
+Call Stack (most recent call first):
+  CMakeLists.txt:69 (catkin_workspace)
 
-rostopic hz /scan
-subscribed to [/scan]
-average rate: 29.289
-	min: 0.000s max: 0.048s std dev: 0.01179s window: 29
-average rate: 29.837
-	min: 0.000s max: 0.048s std dev: 0.01493s window: 59
-average rate: 29.949
-	min: 0.000s max: 0.048s std dev: 0.01559s window: 89
-average rate: 29.786
-	min: 0.000s max: 0.048s std dev: 0.01583s window: 118
 
-ostopic hz /camera/rgb/image_rect_color
-subscribed to [/camera/rgb/image_rect_color]
-average rate: 30.103
-	min: 0.031s max: 0.035s std dev: 0.00099s window: 30
-average rate: 30.007
-	min: 0.031s max: 0.035s std dev: 0.00100s window: 60
-average rate: 30.002
-	min: 0.031s max: 0.035s std dev: 0.00106s window: 90
-average rate: 29.995
-	min: 0.030s max: 0.036s std dev: 0.00110s window: 120
+-- ~~  - rtabmap_ros (plain cmake)
+-- ~~  - witress_bot
+-- ~~  - autonomus_mobile_robot
+-- ~~  - ros_gui
+-- ~~  - freenect_camera
+-- ~~  - mpu6050_imu_converter
+-- ~~  - my_robot_pkg
+-- ~~  - rtabmap (plain cmake)
+-- ~~  - rtabmap_msgs (plain cmake)
+-- ~~  - rgbd_launch
+-- ~~  - mpu6050_imu_driver
+-- ~~  - rtabmap_conversions (plain cmake)
+-- ~~  - rtabmap_rviz_plugins (plain cmake)
+-- ~~  - rtabmap_sync (plain cmake)
+-- ~~  - rtabmap_util (plain cmake)
+-- ~~  - rtabmap_odom (plain cmake)
+-- ~~  - rtabmap_slam (plain cmake)
+-- ~~  - rtabmap_viz (plain cmake)
+-- ~~  - vision
+-- ~~  - waiterbot_interface
+-- ~~  - robot_debug
+-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+CMake Error at /opt/ros/noetic/share/catkin/cmake/catkin_workspace.cmake:100 (message):
+  This workspace contains non-catkin packages in it, and catkin cannot build
+  a non-homogeneous workspace without isolation.  Try the
+  'catkin_make_isolated' command instead.
+Call Stack (most recent call first):
+  CMakeLists.txt:69 (catkin_workspace)
 
-rostopic hz /camera/depth_registered/image_raw
-subscribed to [/camera/depth_registered/image_raw]
-average rate: 29.978
-	min: 0.031s max: 0.035s std dev: 0.00107s window: 30
-average rate: 29.984
-	min: 0.031s max: 0.036s std dev: 0.00113s window: 60
-average rate: 29.975
-	min: 0.031s max: 0.036s std dev: 0.00119s window: 90
-average rate: 29.971
-	min: 0.031s max: 0.036s std dev: 0.00114s window: 120
-^Caverage rate: 29.963
-	min: 0.031s max: 0.036s std dev: 0.00111s window: 128
+
+-- Configuring incomplete, errors occurred!
+See also "/home/iascr/catkin_ws/build/CMakeFiles/CMakeOutput.log".
+See also "/home/iascr/catkin_ws/build/CMakeFiles/CMakeError.log".
+Invoking "cmake" failed
