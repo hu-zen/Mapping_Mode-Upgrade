@@ -1,58 +1,144 @@
-<?xml version="1.0"?>
-<launch>
-  <include file="$(find freenect_launch)/launch/freenect.launch">
-    <arg name="depth_registration" value="true" />
-  </include>
-
-  <node pkg="depthimage_to_laserscan" type="depthimage_to_laserscan" name="depthimage_to_laserscan" >
-      <remap from="image"       to="/camera/depth_registered/image_raw"/>
-      <remap from="camera_info" to="/camera/depth_registered/camera_info"/>
-      <remap from="scan"        to="/scan"/>
-      <param name="range_max"      type="double" value="4.0"/>
-    </node>
-
-  <arg name="model" default="$(find autonomus_mobile_robot)/urdf/mobile_robot.urdf.xacro"/>
-  <param name="robot_description" command="$(find xacro)/xacro $(arg model)" />
-  <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" />
-  <node name="rviz" pkg="rviz" type="rviz" args="-d $(find autonomus_mobile_robot)/config/amcl_nav.rviz"/>
-  <node pkg="tf" type="static_transform_publisher" name="camera_optical" args="0 0 0.83 0 0 0 /base_link /camera_link 100" />
-  
-  <group ns="rtabmap">
-    <node pkg="nodelet" type="nodelet" name="rgbd_sync" args="standalone rtabmap_sync/rgbd_sync" output="screen">
-      <remap from="rgb/image"       to="/camera/rgb/image_rect_color"/>
-      <remap from="depth/image"     to="/camera/depth_registered/image_raw"/>
-      <remap from="rgb/camera_info" to="/camera/rgb/camera_info"/>
-      <remap from="rgbd_image"      to="rgbd_image"/>
-      <param name="approx_sync"       value="true"/> 
-    </node>
-
-    <node pkg="rtabmap_odom" type="rgbd_odometry" name="rgbd_odometry" output="screen">
-      <param name="subscribe_rgbd" type="bool"   value="true"/>
-      <param name="frame_id"       type="string" value="base_link"/>
-      <remap from="rgbd_image" to="rgbd_image"/>
-      <remap from="odom" to="odom"/>
-    </node>
-  </group>
-
-  <node pkg="rosserial_python" type="serial_node.py" name="serial_node">
-    <param name="port" value="/dev/ttyUSB1"/>
-    <param name="baud" value="115200"/>
-  </node>
-  <node pkg="my_robot_pkg" type="ekf_odom_pub" name="ekf_odom_pub" /> 
- 
-  <node name="rtabmap" pkg="rtabmap_ros" type="rtabmap" output="screen" args="--delete_db_on_start">
-      
-      <remap from="/rtabmap/grid_map" to="/map"/>
-
-      <remap from="odom" to="/odom"/> 
-      <remap from="scan" to="/scan"/>
-      
-      <remap from="rgbd_image" to="/rtabmap/rgbd_image"/>
-      
-      <param name="frame_id" type="string" value="base_link"/>
-      <param name="subscribe_scan" type="bool" value="true"/>
-      <param name="subscribe_rgbd" type="bool" value="true"/>
-      <param name="Reg/Force3DoF" type="string" value="true"/>
-      <param name="Grid/FromDepth" type="string" value="false"/>
-  </node>
-</launch>
+Panels:
+  - Class: rviz/Displays
+    Help Height: 78
+    Name: Displays
+    Property Tree Widget:
+      Expanded:
+        - /Global Options1
+        - /TF1
+        - /Map1
+        - /PointCloud21
+      Splitter Ratio: 0.5
+    Tree Height: 600
+  - Class: rviz/Selection
+    Name: Selection
+  - Class: rviz/Tool Properties
+    Expanded:
+      - /2D Pose Estimate1
+      - /2D Nav Goal1
+    Name: Tool Properties
+    Splitter Ratio: 0.588679
+  - Class: rviz/Views
+    Expanded:
+      - /Current View1
+    Name: Views
+    Splitter Ratio: 0.5
+  - Class: rviz/Time
+    Name: Time
+    SyncMode: 0
+    SyncSource: PointCloud2
+Visualization Manager:
+  Class: ""
+  Displays:
+    - Class: rviz/Grid
+      Color: 160; 160; 164
+      Enabled: true
+      Line Style:
+        Line Width: 0.03
+        Value: Lines
+      Name: Grid
+      Normal Cell Count: 0
+      Offset: {X: 0, Y: 0, Z: 0}
+      Plane: XY
+      Plane Cell Count: 10
+      Reference Frame: <Fixed Frame>
+      Value: true
+    - Alpha: 1
+      Class: rviz/RobotModel
+      Collision Enabled: false
+      Enabled: true
+      Name: RobotModel
+      Robot Description: robot_description
+      TF Prefix: ""
+      Update Interval: 0
+      Value: true
+      Visual Enabled: true
+    - Class: rviz/TF
+      Enabled: true
+      Frame Timeout: 15
+      Frames:
+        All Enabled: true
+      Marker Alpha: 1
+      Marker Scale: 0.2
+      Name: TF
+      Show Arrows: true
+      Show Axes: true
+      Show Names: true
+      Tree: {}
+      Update Interval: 0
+      Value: true
+    - Alpha: 1
+      Autocompute Intensity Bounds: true
+      Channel Name: intensity
+      Class: rviz/LaserScan
+      Color: 0; 255; 0
+      Color Transformer: FlatColor
+      Decay Time: 0
+      Enabled: true
+      Name: LaserScan
+      Position Transformer: XYZ
+      Queue Size: 10
+      Size (m): 0.05
+      Style: Flat Squares
+      Topic: /scan
+      Value: true
+    - Alpha: 0.7
+      Class: rviz/Map
+      Color Scheme: map
+      Draw Behind: false
+      Enabled: true
+      Name: Map
+      Topic: /map
+      Value: true
+    - Class: rviz/PointCloud2
+      Color: 255; 255; 255
+      Color Transformer: RGB8
+      Decay Time: 0
+      Enabled: true
+      Name: PointCloud2
+      Position Transformer: XYZ
+      Queue Size: 10
+      Size (m): 0.01
+      Style: Points
+      Topic: /rtabmap/cloud_map
+      Value: true
+  Enabled: true
+  Global Options:
+    Background Color: 48; 48; 48
+    Fixed Frame: map
+    Frame Rate: 30
+  Name: root
+  Tools:
+    - Class: rviz/Interact
+    - Class: rviz/MoveCamera
+    - Class: rviz/Select
+    - Class: rviz/SetInitialPose
+      Topic: /initialpose
+    - Class: rviz/SetGoal
+      Topic: /move_base_simple/goal
+  Value: true
+  Views:
+    Current:
+      Class: rviz/XYOrbit
+      Distance: 10.0
+      Enable Stereo Rendering:
+        Stereo Eye Separation: 0.06
+        Stereo Focal Distance: 1
+        Swap Stereo Eyes: false
+        Value: false
+      Focal Point: {X: 0, Y: 0, Z: 0}
+      Name: Current View
+      Near Clip Distance: 0.01
+      Pitch: 0.785398
+      Target Frame: base_link
+      Value: XYOrbit
+Window Geometry:
+  Displays:
+    collapsed: false
+  Height: 1016
+  Hide Left Dock: false
+  Hide Right Dock: false
+  QMainWindow State: 000000ff00000000fd0000000100000000000001c9000003b5fc0200000007fb000000100044006900730070006c0061007900730100000028000003b5000000dd00fffffffb0000000a00560069006500770073000000003d000003b5000000a400fffffffb0000001200530065006c0065006300740069006f006e00000001e10000009b0000006400fffffffb0000001e0054006f006f006c002000500072006f007000650072007400690065007302000001ed000001df00000185000000a3fb000000120056006900650077007300200054006f006f02000001df000002110000018500000122fb000000200054006f006f006c002000500072006f0070006500720074006900650073003203000002880000011d000002210000017afb000000100044006900730070006c0061007900730000000000000003b500000004000000040000000800000008fc0000000100000002000000010000000a0054006f006f006c00730100000000ffffffff0000000000000000
+  Width: 1848
+  X: 72
+  Y: 27
