@@ -1,32 +1,319 @@
- sudo apt-get install ros-noetic-rqt-tf-tree
-[sudo] password for iascr: 
-Sorry, try again.
-[sudo] password for iascr: 
-Reading package lists... Done
-Building dependency tree       
-Reading state information... Done
-ros-noetic-rqt-tf-tree is already the newest version (0.6.5-1focal.20250520.001233).
-ros-noetic-rqt-tf-tree set to manually installed.
-0 upgraded, 0 newly installed, 0 to remove and 693 not upgraded.
-iascr@iascr-robot:~$ source /opt/ros/noetic/setup.bash 
-iascr@iascr-robot:~$ rqt
-rqt               rqt_dep           rqt_logger_level  rqt_topic
-rqt_bag           rqt_graph         rqt_plot          
-rqt_console       rqt_image_view    rqt_shell         
-iascr@iascr-robot:~$ rosrun t
-teb_local_planner       tf2_ros                 turtlebot3_gazebo
-teleop_twist_keyboard   tf_conversions          turtlebot3_msgs
-tf                      theora_image_transport  turtlebot3_navigation
-tf2                     topic_tools             turtlebot3_teleop
-tf2_eigen               trajectory_msgs         turtlesim
-tf2_geometry_msgs       transmission_interface  turtle_tf
-tf2_kdl                 turtle_actionlib        turtle_tf2
-tf2_msgs                turtlebot3_bringup      
-tf2_py                  turtlebot3_description  
-iascr@iascr-robot:~$ rosrun tf
-tf                 tf2_geometry_msgs  tf2_py             
-tf2                tf2_kdl            tf2_ros            
-tf2_eigen          tf2_msgs           tf_conversions     
-iascr@iascr-robot:~$ rosrun tf tf_
-tf_change_notifier  tf_empty_listener   tf_remap
-tf_echo             tf_monitor          
+/rtabmap/rgbd_sync subscribed to (approx sync):
+   /camera/rgb/image_rect_color \
+   /camera/depth_registered/image_raw \
+   /camera/rgb/camera_info
+[ WARN] [1760845240.776826648]: Could not find any compatible depth output mode for 1. Falling back to default depth output mode 1.
+[ INFO] [1760845241.287229249]: RGBDOdometry: approx_sync    = true
+[ INFO] [1760845241.287293948]: RGBDOdometry: approx_sync_max_interval = 0.000000
+[ INFO] [1760845241.287328722]: RGBDOdometry: queue_size     = 5
+[ INFO] [1760845241.287370691]: RGBDOdometry: subscribe_rgbd = true
+[ INFO] [1760845241.287403385]: RGBDOdometry: rgbd_cameras   = 1
+[ INFO] [1760845241.287435773]: RGBDOdometry: keep_color     = false
+[ INFO] [1760845241.291357029]: 
+/rtabmap/rgbd_odometry subscribed to:
+   /rtabmap/rgbd_image
+[ INFO] [1760845241.724983372]: rgb_frame_id = 'camera_rgb_optical_frame' 
+[ INFO] [1760845241.725060662]: depth_frame_id = 'camera_depth_optical_frame' 
+[ WARN] [1760845241.734270258]: Camera calibration file /home/iascr/.ros/camera_info/rgb_A00367908097045A.yaml not found.
+[ WARN] [1760845241.734323530]: Using default parameters for RGB camera calibration.
+[ WARN] [1760845241.734353387]: Camera calibration file /home/iascr/.ros/camera_info/depth_A00367908097045A.yaml not found.
+[ WARN] [1760845241.734381837]: Using default parameters for IR camera calibration.
+[ERROR] [1760845242.696632]: Mismatched protocol version in packet (b'\x02'): lost sync or rosserial_python is from different ros release than the rosserial client
+[ERROR] [1760845242.699508]: Mismatched protocol version in packet (b'K'): lost sync or rosserial_python is from different ros release than the rosserial client
+[WARN] [1760845242.701380]: Last read step: syncflag
+[WARN] [1760845242.702318]: Run loop error: Serial Port read failure: read failed: device reports readiness to read but returned no data (device disconnected or multiple access on port?)
+[ERROR] [1760845242.798645]: Tried to publish before configured, topic id 126
+[ERROR] [1760845243.105921]: Tried to publish before configured, topic id 126
+[ERROR] [1760845243.308966]: Tried to publish before configured, topic id 126
+[ INFO] [1760845243.376952022]: Stopping device RGB and Depth stream flush.
+[ERROR] [1760845243.409559]: Tried to publish before configured, topic id 126
+[ERROR] [1760845243.510757]: Mismatched protocol version in packet (b'\x02'): lost sync or rosserial_python is from different ros release than the rosserial client
+[ WARN] [1760845243.708881084]: The time difference between rgb and depth frames is high (diff=0.156054s, rgb=1760845243.706948s, depth=1760845243.550893s). You may want to set approx_sync_max_interval lower than 0.01s to reject spurious bad synchronizations or use approx_sync=false if streams have all the exact same timestamp.
+
+rostopic list 
+/camera/depth/camera_info
+/camera/depth/disparity
+/camera/depth/image
+/camera/depth/image/compressed
+/camera/depth/image/compressed/parameter_descriptions
+/camera/depth/image/compressed/parameter_updates
+/camera/depth/image/compressedDepth
+/camera/depth/image/compressedDepth/parameter_descriptions
+/camera/depth/image/compressedDepth/parameter_updates
+/camera/depth/image/theora
+/camera/depth/image/theora/parameter_descriptions
+/camera/depth/image/theora/parameter_updates
+/camera/depth/image_raw
+/camera/depth/image_raw/compressed
+/camera/depth/image_raw/compressed/parameter_descriptions
+/camera/depth/image_raw/compressed/parameter_updates
+/camera/depth/image_raw/compressedDepth
+/camera/depth/image_raw/compressedDepth/parameter_descriptions
+/camera/depth/image_raw/compressedDepth/parameter_updates
+/camera/depth/image_raw/theora
+/camera/depth/image_raw/theora/parameter_descriptions
+/camera/depth/image_raw/theora/parameter_updates
+/camera/depth/image_rect
+/camera/depth/image_rect/compressed
+/camera/depth/image_rect/compressed/parameter_descriptions
+/camera/depth/image_rect/compressed/parameter_updates
+/camera/depth/image_rect/compressedDepth
+/camera/depth/image_rect/compressedDepth/parameter_descriptions
+/camera/depth/image_rect/compressedDepth/parameter_updates
+/camera/depth/image_rect/theora
+/camera/depth/image_rect/theora/parameter_descriptions
+/camera/depth/image_rect/theora/parameter_updates
+/camera/depth/image_rect_raw
+/camera/depth/image_rect_raw/compressed
+/camera/depth/image_rect_raw/compressed/parameter_descriptions
+/camera/depth/image_rect_raw/compressed/parameter_updates
+/camera/depth/image_rect_raw/compressedDepth
+/camera/depth/image_rect_raw/compressedDepth/parameter_descriptions
+/camera/depth/image_rect_raw/compressedDepth/parameter_updates
+/camera/depth/image_rect_raw/theora
+/camera/depth/image_rect_raw/theora/parameter_descriptions
+/camera/depth/image_rect_raw/theora/parameter_updates
+/camera/depth/points
+/camera/depth_rectify_depth/parameter_descriptions
+/camera/depth_rectify_depth/parameter_updates
+/camera/depth_registered/camera_info
+/camera/depth_registered/disparity
+/camera/depth_registered/hw_registered/image_rect
+/camera/depth_registered/hw_registered/image_rect/compressed
+/camera/depth_registered/hw_registered/image_rect/compressed/parameter_descriptions
+/camera/depth_registered/hw_registered/image_rect/compressed/parameter_updates
+/camera/depth_registered/hw_registered/image_rect/compressedDepth
+/camera/depth_registered/hw_registered/image_rect/compressedDepth/parameter_descriptions
+/camera/depth_registered/hw_registered/image_rect/compressedDepth/parameter_updates
+/camera/depth_registered/hw_registered/image_rect/theora
+/camera/depth_registered/hw_registered/image_rect/theora/parameter_descriptions
+/camera/depth_registered/hw_registered/image_rect/theora/parameter_updates
+/camera/depth_registered/hw_registered/image_rect_raw
+/camera/depth_registered/hw_registered/image_rect_raw/compressed
+/camera/depth_registered/hw_registered/image_rect_raw/compressed/parameter_descriptions
+/camera/depth_registered/hw_registered/image_rect_raw/compressed/parameter_updates
+/camera/depth_registered/hw_registered/image_rect_raw/compressedDepth
+/camera/depth_registered/hw_registered/image_rect_raw/compressedDepth/parameter_descriptions
+/camera/depth_registered/hw_registered/image_rect_raw/compressedDepth/parameter_updates
+/camera/depth_registered/hw_registered/image_rect_raw/theora
+/camera/depth_registered/hw_registered/image_rect_raw/theora/parameter_descriptions
+/camera/depth_registered/hw_registered/image_rect_raw/theora/parameter_updates
+/camera/depth_registered/image
+/camera/depth_registered/image/compressed
+/camera/depth_registered/image/compressed/parameter_descriptions
+/camera/depth_registered/image/compressed/parameter_updates
+/camera/depth_registered/image/compressedDepth
+/camera/depth_registered/image/compressedDepth/parameter_descriptions
+/camera/depth_registered/image/compressedDepth/parameter_updates
+/camera/depth_registered/image/theora
+/camera/depth_registered/image/theora/parameter_descriptions
+/camera/depth_registered/image/theora/parameter_updates
+/camera/depth_registered/image_raw
+/camera/depth_registered/image_raw/compressed
+/camera/depth_registered/image_raw/compressed/parameter_descriptions
+/camera/depth_registered/image_raw/compressed/parameter_updates
+/camera/depth_registered/image_raw/compressedDepth
+/camera/depth_registered/image_raw/compressedDepth/parameter_descriptions
+/camera/depth_registered/image_raw/compressedDepth/parameter_updates
+/camera/depth_registered/image_raw/theora
+/camera/depth_registered/image_raw/theora/parameter_descriptions
+/camera/depth_registered/image_raw/theora/parameter_updates
+/camera/depth_registered/points
+/camera/depth_registered/sw_registered/camera_info
+/camera/depth_registered/sw_registered/image_rect
+/camera/depth_registered/sw_registered/image_rect/compressed
+/camera/depth_registered/sw_registered/image_rect/compressed/parameter_descriptions
+/camera/depth_registered/sw_registered/image_rect/compressed/parameter_updates
+/camera/depth_registered/sw_registered/image_rect/compressedDepth
+/camera/depth_registered/sw_registered/image_rect/compressedDepth/parameter_descriptions
+/camera/depth_registered/sw_registered/image_rect/compressedDepth/parameter_updates
+/camera/depth_registered/sw_registered/image_rect/theora
+/camera/depth_registered/sw_registered/image_rect/theora/parameter_descriptions
+/camera/depth_registered/sw_registered/image_rect/theora/parameter_updates
+/camera/depth_registered/sw_registered/image_rect_raw
+/camera/depth_registered/sw_registered/image_rect_raw/compressed
+/camera/depth_registered/sw_registered/image_rect_raw/compressed/parameter_descriptions
+/camera/depth_registered/sw_registered/image_rect_raw/compressed/parameter_updates
+/camera/depth_registered/sw_registered/image_rect_raw/compressedDepth
+/camera/depth_registered/sw_registered/image_rect_raw/compressedDepth/parameter_descriptions
+/camera/depth_registered/sw_registered/image_rect_raw/compressedDepth/parameter_updates
+/camera/depth_registered/sw_registered/image_rect_raw/theora
+/camera/depth_registered/sw_registered/image_rect_raw/theora/parameter_descriptions
+/camera/depth_registered/sw_registered/image_rect_raw/theora/parameter_updates
+/camera/depth_registered_rectify_depth/parameter_descriptions
+/camera/depth_registered_rectify_depth/parameter_updates
+/camera/driver/parameter_descriptions
+/camera/driver/parameter_updates
+/camera/ir/camera_info
+/camera/ir/image_raw
+/camera/ir/image_raw/compressed
+/camera/ir/image_raw/compressed/parameter_descriptions
+/camera/ir/image_raw/compressed/parameter_updates
+/camera/ir/image_raw/compressedDepth
+/camera/ir/image_raw/compressedDepth/parameter_descriptions
+/camera/ir/image_raw/compressedDepth/parameter_updates
+/camera/ir/image_raw/theora
+/camera/ir/image_raw/theora/parameter_descriptions
+/camera/ir/image_raw/theora/parameter_updates
+/camera/ir/image_rect_ir
+/camera/ir/image_rect_ir/compressed
+/camera/ir/image_rect_ir/compressed/parameter_descriptions
+/camera/ir/image_rect_ir/compressed/parameter_updates
+/camera/ir/image_rect_ir/compressedDepth
+/camera/ir/image_rect_ir/compressedDepth/parameter_descriptions
+/camera/ir/image_rect_ir/compressedDepth/parameter_updates
+/camera/ir/image_rect_ir/theora
+/camera/ir/image_rect_ir/theora/parameter_descriptions
+/camera/ir/image_rect_ir/theora/parameter_updates
+/camera/ir_rectify_ir/parameter_descriptions
+/camera/ir_rectify_ir/parameter_updates
+/camera/projector/camera_info
+/camera/rgb/camera_info
+/camera/rgb/image_color
+/camera/rgb/image_color/compressed
+/camera/rgb/image_color/compressed/parameter_descriptions
+/camera/rgb/image_color/compressed/parameter_updates
+/camera/rgb/image_color/compressedDepth
+/camera/rgb/image_color/compressedDepth/parameter_descriptions
+/camera/rgb/image_color/compressedDepth/parameter_updates
+/camera/rgb/image_color/theora
+/camera/rgb/image_color/theora/parameter_descriptions
+/camera/rgb/image_color/theora/parameter_updates
+/camera/rgb/image_mono
+/camera/rgb/image_mono/compressed
+/camera/rgb/image_mono/compressed/parameter_descriptions
+/camera/rgb/image_mono/compressed/parameter_updates
+/camera/rgb/image_mono/compressedDepth
+/camera/rgb/image_mono/compressedDepth/parameter_descriptions
+/camera/rgb/image_mono/compressedDepth/parameter_updates
+/camera/rgb/image_mono/theora
+/camera/rgb/image_mono/theora/parameter_descriptions
+/camera/rgb/image_mono/theora/parameter_updates
+/camera/rgb/image_raw
+/camera/rgb/image_raw/compressed
+/camera/rgb/image_raw/compressed/parameter_descriptions
+/camera/rgb/image_raw/compressed/parameter_updates
+/camera/rgb/image_raw/compressedDepth
+/camera/rgb/image_raw/compressedDepth/parameter_descriptions
+/camera/rgb/image_raw/compressedDepth/parameter_updates
+/camera/rgb/image_raw/theora
+/camera/rgb/image_raw/theora/parameter_descriptions
+/camera/rgb/image_raw/theora/parameter_updates
+/camera/rgb/image_rect_color
+/camera/rgb/image_rect_color/compressed
+/camera/rgb/image_rect_color/compressed/parameter_descriptions
+/camera/rgb/image_rect_color/compressed/parameter_updates
+/camera/rgb/image_rect_color/compressedDepth
+/camera/rgb/image_rect_color/compressedDepth/parameter_descriptions
+/camera/rgb/image_rect_color/compressedDepth/parameter_updates
+/camera/rgb/image_rect_color/theora
+/camera/rgb/image_rect_color/theora/parameter_descriptions
+/camera/rgb/image_rect_color/theora/parameter_updates
+/camera/rgb/image_rect_mono
+/camera/rgb/image_rect_mono/compressed
+/camera/rgb/image_rect_mono/compressed/parameter_descriptions
+/camera/rgb/image_rect_mono/compressed/parameter_updates
+/camera/rgb/image_rect_mono/compressedDepth
+/camera/rgb/image_rect_mono/compressedDepth/parameter_descriptions
+/camera/rgb/image_rect_mono/compressedDepth/parameter_updates
+/camera/rgb/image_rect_mono/theora
+/camera/rgb/image_rect_mono/theora/parameter_descriptions
+/camera/rgb/image_rect_mono/theora/parameter_updates
+/camera/rgb_debayer/parameter_descriptions
+/camera/rgb_debayer/parameter_updates
+/camera/rgb_rectify_color/parameter_descriptions
+/camera/rgb_rectify_color/parameter_updates
+/camera/rgb_rectify_mono/parameter_descriptions
+/camera/rgb_rectify_mono/parameter_updates
+/cmd_vel
+/diagnostics
+/imu/data
+/initialpose
+/joint_states
+/joy
+/joy/set_feedback
+/left_ticks
+/map
+/map_updates
+/move_base_simple/goal
+/odom_data_quat
+/right_ticks
+/robot_pose_ekf/odom_combined
+/rosout
+/rosout_agg
+/rtabmap/cloud_map
+/rtabmap/odom_info
+/rtabmap/odom_info_lite
+/rtabmap/odom_last_frame
+/rtabmap/odom_local_map
+/rtabmap/odom_local_scan_map
+/rtabmap/odom_rgbd_image
+/rtabmap/rgbd_image
+/rtabmap/rgbd_image/compressed
+/scan
+/tf
+/tf_static
+/vo
+
+rostopic echo /scan /
+Display all 223 possibilities? (y or n)
+/camera/depth/camera_info
+/camera/depth/disparity
+/camera/depth/image
+/camera/depth/image/compressed
+/camera/depth/image/compressedDepth
+/camera/depth/image/compressedDepth/parameter_descriptions
+/camera/depth/image/compressedDepth/parameter_updates
+/camera/depth/image/compressed/parameter_descriptions
+/camera/depth/image/compressed/parameter_updates
+/camera/depth/image_raw
+/camera/depth/image_raw/compressed
+/camera/depth/image_raw/compressedDepth
+/camera/depth/image_raw/compressedDepth/parameter_descriptions
+/camera/depth/image_raw/compressedDepth/parameter_updates
+/camera/depth/image_raw/compressed/parameter_descriptions
+/camera/depth/image_raw/compressed/parameter_updates
+/camera/depth/image_raw/theora
+/camera/depth/image_raw/theora/parameter_descriptions
+/camera/depth/image_raw/theora/parameter_updates
+/camera/depth/image_rect
+/camera/depth/image_rect/compressed
+/camera/depth/image_rect/compressedDepth
+/camera/depth/image_rect/compressedDepth/parameter_descriptions
+--More--^C
+
+rostopic echo /robot_pose_ekf/odom_combined /
+Display all 223 possibilities? (y or n)
+/camera/depth/camera_info
+/camera/depth/disparity
+/camera/depth/image
+/camera/depth/image/compressed
+/camera/depth/image/compressedDepth
+/camera/depth/image/compressedDepth/parameter_descriptions
+/camera/depth/image/compressedDepth/parameter_updates
+/camera/depth/image/compressed/parameter_descriptions
+/camera/depth/image/compressed/parameter_updates
+/camera/depth/image_raw
+/camera/depth/image_raw/compressed
+/camera/depth/image_raw/compressedDepth
+/camera/depth/image_raw/compressedDepth/parameter_descriptions
+/camera/depth/image_raw/compressedDepth/parameter_updates
+/camera/depth/image_raw/compressed/parameter_descriptions
+/camera/depth/image_raw/compressed/parameter_updates
+/camera/depth/image_raw/theora
+/camera/depth/image_raw/theora/parameter_descriptions
+/camera/depth/image_raw/theora/parameter_updates
+/camera/depth/image_rect
+/camera/depth/image_rect/compressed
+/camera/depth/image_rect/compressedDepth
+
+rosrun tf view_frames 
+Listening to /tf for 5.0 seconds
+Done Listening
+b'dot - graphviz version 2.43.0 (0)\n'
+Traceback (most recent call last):
+  File "/opt/ros/noetic/lib/tf/view_frames", line 119, in <module>
+    generate(dot_graph)
+  File "/opt/ros/noetic/lib/tf/view_frames", line 89, in generate
+    m = r.search(vstr)
+TypeError: cannot use a string pattern on a bytes-like object
