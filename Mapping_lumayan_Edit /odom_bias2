@@ -1,0 +1,65 @@
+#!/usr/bin/env python3
+import rospy
+from nav_msgs.msg import Odometry
+import math, time
+
+class OdomBiasCorrectionSafe:
+    def __init__(self):
+        rospy.init_node('odom_bias_correction', anonymous=False)
+        self.max_vel_jump = rospy.get_param('~max_vel_jump', 0.6)
+        self.bias_hold_time = rospy.get_param('~bias_hold_time', 0.3)
+        self.hold_until = 0.0
+        self.last_msg = None
+        # publish corrected odom to /odom_data_quat
+        self.pub = rospy.Publisher('/odom_data_quat', Odometry, queue_size=5)
+        rospy.Subscriber('/odom', Odometry, self.odom_cb)
+        rospy.loginfo("odom_bias_correction: started (max_vel_jump=%.2f, hold=%.2f)", self.max_vel_jump, self.bias_hold_time)
+
+    def has_nan(self, msg):
+        p = msg.pose.pose.position
+        o = msg.pose.pose.orientation
+        vals = [p.x, p.y, p.z, o.x, o.y, o.z, o.w]
+        return any([math.isnan(v) or math.isinf(v) for v in vals])
+
+    def odom_cb(self, msg):
+        now = time.time()
+        if self.has_nan(msg):
+            rospy.logwarn_throttle(2, "odom_bias_correction: incoming /odom contains NaN, dropping")
+            return
+
+        if self.last_msg is not None:
+            dt = (msg.header.stamp - self.last_msg.header.stamp).to_sec() if msg.header.stamp > self.last_msg.header.stamp else 0.03
+            if dt <= 0:
+                dt = 0.03
+            dx = msg.pose.pose.position.x - self.last_msg.pose.pose.position.x
+            dy = msg.pose.pose.position.y - self.last_msg.pose.pose.position.y
+            vel = math.sqrt(dx*dx + dy*dy) / dt
+            if vel > self.max_vel_jump:
+                rospy.logwarn("odom_bias_correction: velocity spike %.3f > %.3f, holding previous odom", vel, self.max_vel_jump)
+                self.hold_until = now + self.bias_hold_time
+                # publish last safe msg if any
+                if self.last_msg:
+                    out = self.last_msg
+                    out.header.stamp = rospy.Time.now()
+                    self.pub.publish(out)
+                return
+
+        # hold logic
+        if now < self.hold_until:
+            if self.last_msg:
+                out = self.last_msg
+                out.header.stamp = rospy.Time.now()
+                self.pub.publish(out)
+            return
+
+        # normal publish, refresh header stamp to now to avoid message-age issues
+        msg.header.stamp = rospy.Time.now()
+        self.pub.publish(msg)
+        self.last_msg = msg
+
+if __name__ == "__main__":
+    try:
+        OdomBiasCorrectionSafe()
+        rospy.spin()
+    except rospy.ROSInterruptException:
+        pass
