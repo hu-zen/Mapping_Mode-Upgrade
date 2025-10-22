@@ -18,7 +18,7 @@ class VOFilterNode:
         self.sub = rospy.Subscriber(in_topic, Odometry, self.cb)
         self.dropped = 0
         rospy.loginfo("vo_filter: forwarding %s -> %s (max_age=%.3f)", in_topic, out_topic, self.max_age)
-
+        
     def cb(self, msg):
         now = rospy.Time.now()
         age = (now - msg.header.stamp).to_sec()
