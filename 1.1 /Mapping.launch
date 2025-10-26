@@ -7,13 +7,13 @@
   <node pkg="my_robot_pkg" type="depth_median_filter.py" name="depth_median_filter" output="screen" respawn="true">
       <remap from="~in_topic"  to="/camera/depth_registered/image_raw"/>
       <remap from="~out_topic" to="/camera/depth_registered/image_filtered"/>
-      <param name="buffer_size" value="3"/> </node>
+      <param name="buffer_size" value="3"/>
+  </node>
 
   <node pkg="depthimage_to_laserscan" type="depthimage_to_laserscan" name="depthimage_to_laserscan" output="screen" respawn="true">
-    <remap from="image"       to="/camera/depth_registered/image_filtered"/> 
+    <remap from="image"       to="/camera/depth_registered/image_filtered"/>
     <remap from="camera_info" to="/camera/depth_registered/camera_info"/>
     <remap from="scan"        to="/scan"/>
-    
     <param name="scan_height"     type="int"    value="10"/>
     <param name="scan_time"       type="double" value="0.033"/>
     <param name="range_min"       type="double" value="0.02"/>
@@ -29,16 +29,21 @@
   <node name="joint_state_publisher_gui" pkg="joint_state_publisher_gui" type="joint_state_publisher_gui"/>
   <node name="rviz" pkg="rviz" type="rviz" args="-d $(find autonomus_mobile_robot)/config/amcl_nav.rviz"/>
 
-  <node pkg="tf" type="static_transform_publisher" name="camera_optical"
+  <node pkg="tf" type="static_transform_publisher" name="camera_tf"
         args="0 0 0.83 0 0 0 base_link camera_link 100" />
+
+  <node pkg="tf" type="static_transform_publisher" name="base_footprint_tf"
+        args="0 0 0.09 0 0 0 base_footprint base_link 100" />
 
   <group ns="rtabmap">
     <node pkg="nodelet" type="nodelet" name="rgbd_sync" args="standalone rtabmap_sync/rgbd_sync" output="screen" respawn="true">
       <remap from="rgb/image"       to="/camera/rgb/image_rect_color"/>
-      <remap from="depth/image"     to="/camera/depth_registered/image_raw"/> <remap from="rgb/camera_info" to="/camera/rgb/camera_info"/>
+      <remap from="depth/image"     to="/camera/depth_registered/image_raw"/>
+      <remap from="rgb/camera_info" to="/camera/rgb/camera_info"/>
       <remap from="rgbd_image"      to="rgbd_image"/>
       <param name="approx_sync" value="true"/>
       <param name="approx_sync_max_interval" value="0.1"/>
+      <param name="queue_size" value="100"/>
     </node>
 
     <node pkg="rtabmap_odom" type="rgbd_odometry" name="rgbd_odometry" output="screen" respawn="true">
@@ -47,53 +52,59 @@
       <param name="icp_odometry" value="true"/>
       <param name="approx_sync" value="true"/>
       <param name="Reg/Strategy" value="0"/>
-      
       <remap from="rgb/image"       to="/camera/rgb/image_rect_color"/>
       <remap from="depth/image"     to="/camera/depth_registered/image_raw"/>
       <remap from="rgb/camera_info" to="/camera/rgb/camera_info"/>
-      
-      <remap from="odom" to="/vo_raw"/> 
-    </node>
+      <remap from="odom" to="/vo_raw"/> </node>
   </group>
 
   <node pkg="my_robot_pkg" type="vo_filter.py" name="vo_filter" output="screen" respawn="true">
     <remap from="~vo_in" to="/vo_raw"/>
     <remap from="~vo_out" to="/vo_filtered"/>
-    <param name="max_age" value="0.5"/>
-  </node>
-  
+    <param name="max_age" value="1.0"/> </node>
+
   <node pkg="rosserial_python" type="serial_node.py" name="serial_node" output="screen" respawn="true">
     <param name="port" value="/dev/ttyUSB1"/> <param name="baud" value="115200"/>
   </node>
-  
+
   <node pkg="my_robot_pkg" type="ekf_odom_pub" name="ekf_odom_pub"/>
 
   <node pkg="robot_pose_ekf" type="robot_pose_ekf" name="robot_pose_ekf" output="screen" respawn="true">
     <param name="output_frame" value="odom"/>
-    <param name="base_footprint_frame" value="base_footprint"/>
-    <param name="freq" value="30.0"/>
+    <param name="base_footprint_frame" value="base_footprint"/> <param name="freq" value="30.0"/>
     <param name="sensor_timeout" value="1.0"/>
     <param name="odom_used" value="true"/>
-    <param name="imu_used" value="true"/>
-    <param name="vo_used" value="true"/>
+    <param name="imu_used" value="false"/> <param name="vo_used" value="true"/>
     <param name="debug" value="false"/>
     <param name="self_diagnose" value="false"/>
-    
-    <remap from="odom"     to="/odom_data_quat"/> <remap from="vo"       to="/vo_filtered"/>    <remap from="imu_data" to="/imu/data"/>       </node>
+    <remap from="odom"     to="/odom_data_quat"/>
+    <remap from="vo"       to="/vo_filtered"/>
+    </node>
 
   <group ns="rtabmap">
-    <node name="rtabmap" pkg="rtabmap_ros" type="rtabmap" output="screen" args="--delete_db_on_start" respawn="true">
+    <node name="rtabmap" pkg="rtabmap_slam" type="rtabmap" output="screen" args="--delete_db_on_start" respawn="true">
       <param name="frame_id"         value="base_link"/>
       <param name="map_frame_id"     value="map"/>
       <param name="subscribe_depth"  value="false"/>
-      <param name="subscribe_rgbd"   value="true"/> <param name="subscribe_scan"   value="true"/> <remap from="odom"       to="/odom"/> <remap from="scan"       to="/scan"/> <remap from="rgbd_image" to="/rtabmap/rgbd_image"/> <remap from="grid_map" to="/map"/>
-      
-      <param name="Vis/LoopClosureEnabled" value="true"/> <param name="Grid/FromDepth"         value="false"/> <param name="Grid/RangeMax"          value="4.5"/>
-      <param name_for_stt="Grid/CellSize"           value="0.05"/> <param name="RGBD/ProximityBySpace"     value="true"/>  <param name="RGBD/LocalProximityMaxDist" value="1.0"/>
-      <param name="Reg/Strategy"              value="1"/>  <param name="Vis/MinInliers"            value="15"/>
+      <param name="subscribe_rgbd"   value="true"/>
+      <param name="subscribe_scan"   value="true"/>
+
+      <remap from="odom"       to="/odom"/>
+      <remap from="scan"       to="/scan"/>
+      <remap from="rgbd_image" to="/rtabmap/rgbd_image"/>
+
+      <remap from="grid_map" to="/map"/>
+
+      <param name="Vis/LoopClosureEnabled" value="true"/>
+      <param name="Grid/FromDepth"         value="false"/>
+      <param name="Grid/RangeMax"          value="4.5"/>
+      <param name="Grid/CellSize"          value="0.05"/>
+      <param name="RGBD/ProximityBySpace"     value="true"/>
+      <param name="RGBD/LocalProximityMaxDist" value="1.0"/>
+      <param name="Reg/Strategy"              value="1"/>
+      <param name="Vis/MinInliers"            value="15"/>
       <param name="Vis/MaxFeatures"           value="600"/>
       <param name="Kp/MaxFeatures"            value="200"/>
-      
       <param name="Mem/IncrementalMemory"   value="true"/>
       <param name="Mem/InitWMWithAllNodes"  value="true"/>
       <param name="Mem/ReduceGraph"         value="false"/>
@@ -101,7 +112,6 @@
   </group>
 
   <node pkg="my_robot_pkg" type="rviz_click_to_2d" name="rviz_click_to_2d"/>
-  
   <node pkg="my_robot_pkg" type="mapping_autoresume.py" name="mapping_autoresume" output="screen" respawn="true">
     <param name="freeze_secs" value="10.0"/>
     <param name="resume_secs" value="15.0"/>
