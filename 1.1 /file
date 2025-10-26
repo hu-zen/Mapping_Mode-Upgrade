@@ -1,111 +1,112 @@
-rtopic echo /odom_data_quat 
-^Ciascr@iascr-robot:~$ rostopic echo /odom_data_quat /
-Display all 280 possibilities? (y or n)
-/camera/depth/camera_info
-/camera/depth/disparity
-/camera/depth/image
-/camera/depth/image/compressed
-/camera/depth/image/compressedDepth
-/camera/depth/image/compressedDepth/parameter_descriptions
-/camera/depth/image/compressedDepth/parameter_updates
-/camera/depth/image/compressed/parameter_descriptions
-/camera/depth/image/compressed/parameter_updates
-/camera/depth/image_raw
-/camera/depth/image_raw/compressed
-/camera/depth/image_raw/compressedDepth
-/camera/depth/image_raw/compressedDepth/parameter_descriptions
-/camera/depth/image_raw/compressedDepth/parameter_updates
-/camera/depth/image_raw/compressed/parameter_descriptions
-/camera/depth/image_raw/compressed/parameter_updates
-/camera/depth/image_raw/theora
-/camera/depth/image_raw/theora/parameter_descriptions
-/camera/depth/image_raw/theora/parameter_updates
-/camera/depth/image_rect
-/camera/depth/image_rect/compressed
-/camera/depth/image_rect/compressedDepth
-/camera/depth/image_rect/compressedDepth/parameter_descriptions
-/camera/depth/image_rect/compressedDepth/parameter_updates
-/camera/depth/image_rect/compressed/parameter_descriptions
-/camera/depth/image_rect/compressed/parameter_updates
-/camera/depth/image_rect_raw
-/camera/depth/image_rect_raw/compressed
-/camera/depth/image_rect_raw/compressedDepth
-/camera/depth/image_rect_raw/compressedDepth/parameter_descriptions
-/camera/depth/image_rect_raw/compressedDepth/parameter_updates
-/camera/depth/image_rect_raw/compressed/parameter_descriptions
-/camera/depth/image_rect_raw/compressed/parameter_updates
-/camera/depth/image_rect_raw/theora
-/camera/depth/image_rect_raw/theora/parameter_descriptions
-/camera/depth/image_rect_raw/theora/parameter_updates
-/camera/depth/image_rect/theora
-/camera/depth/image_rect/theora/parameter_descriptions
-/camera/depth/image_rect/theora/parameter_updates
-/camera/depth/image/theora
-/camera/depth/image/theora/parameter_descriptions
-/camera/depth/image/theora/parameter_updates
-/camera/depth/points
-/camera/depth_rectify_depth/parameter_descriptions
-/camera/depth_rectify_depth/parameter_updates
-/camera/depth_registered/camera_info
-/camera/depth_registered/disparity
-/camera/depth_registered/hw_registered/image_rect
-/camera/depth_registered/hw_registered/image_rect/compressed
-/camera/depth_registered/hw_registered/image_rect/compressedDepth
-/camera/depth_registered/hw_registered/image_rect/compressedDepth/parameter_descriptions
-/camera/depth_registered/hw_registered/image_rect/compressedDepth/parameter_updates
-/camera/depth_registered/hw_registered/image_rect/compressed/parameter_descriptions
-/camera/depth_registered/hw_registered/image_rect/compressed/parameter_updates
-/camera/depth_registered/hw_registered/image_rect_raw
-/camera/depth_registered/hw_registered/image_rect_raw/compressed
-/camera/depth_registered/hw_registered/image_rect_raw/compressedDepth
-/camera/depth_registered/hw_registered/image_rect_raw/compressedDepth/parameter_descriptions
-/camera/depth_registered/hw_registered/image_rect_raw/compressedDepth/parameter_updates
-/camera/depth_registered/hw_registered/image_rect_raw/compressed/parameter_descriptions
-/camera/depth_registered/hw_registered/image_rect_raw/compressed/parameter_updates
-/camera/depth_registered/hw_registered/image_rect_raw/theora
-/camera/depth_registered/hw_registered/image_rect_raw/theora/parameter_descriptions
-/camera/depth_registered/hw_registered/image_rect_raw/theora/parameter_updates
-/camera/depth_registered/hw_registered/image_rect/theora
-/camera/depth_registered/hw_registered/image_rect/theora/parameter_descriptions
-/camera/depth_registered/hw_registered/image_rect/theora/parameter_updates
-/camera/depth_registered/image
-/camera/depth_registered/image/compressed
-/camera/depth_registered/image/compressedDepth
-/camera/depth_registered/image/compressedDepth/parameter_descriptions
-/camera/depth_registered/image/compressedDepth/parameter_updates
-/camera/depth_registered/image/compressed/parameter_descriptions
-/camera/depth_registered/image/compressed/parameter_updates
-/camera/depth_registered/image_filtered
-/camera/depth_registered/image_raw
-/camera/depth_registered/image_raw/compressed
-/camera/depth_registered/image_raw/compressedDepth
-/camera/depth_registered/image_raw/compressedDepth/parameter_descriptions
-/camera/depth_registered/image_raw/compressedDepth/parameter_updates
-/camera/depth_registered/image_raw/compressed/parameter_descriptions
-/camera/depth_registered/image_raw/compressed/parameter_updates
-/camera/depth_registered/image_raw/theora
-/camera/depth_registered/image_raw/theora/parameter_descriptions
-/camera/depth_registered/image_raw/theora/parameter_updates
-/camera/depth_registered/image/theora
-/camera/depth_registered/image/theora/parameter_descriptions
-/camera/depth_registered/image/theora/parameter_updates
-/camera/depth_registered/points
-/camera/depth_registered_rectify_depth/parameter_descriptions
-/camera/depth_registered_rectify_depth/parameter_updates
---More--                                                    ^C
-iascr@iascr-robot:~$ rostopic echo /odom
-^Ciascr@iascr-robot:~$ rostopic echo /right_ticks 
-data: -1
----
-data: -1
----
-data: -1
----
-data: -1
----
-data: -1
----
-data: -1
----
-data: -1
----
+<?xml version="1.0"?>
+<launch>
+  <include file="$(find freenect_launch)/launch/freenect.launch">
+    <arg name="depth_registration" value="true" />
+  </include>
+
+  <node pkg="my_robot_pkg" type="depth_median_filter.py" name="depth_median_filter" output="screen" respawn="true">
+      <remap from="~in_topic"  to="/camera/depth_registered/image_raw"/>
+      <remap from="~out_topic" to="/camera/depth_registered/image_filtered"/>
+      <param name="buffer_size" value="3"/>
+  </node>
+
+  <node pkg="depthimage_to_laserscan" type="depthimage_to_laserscan" name="depthimage_to_laserscan" output="screen" respawn="true">
+    <remap from="image"       to="/camera/depth_registered/image_filtered"/>
+    <remap from="camera_info" to="/camera/depth_registered/camera_info"/>
+    <remap from="scan"        to="/scan"/>
+    <param name="scan_height"     type="int"    value="10"/>
+    <param name="scan_time"       type="double" value="0.033"/>
+    <param name="range_min"       type="double" value="0.02"/>
+    <param name="range_max"       type="double" value="4.8"/>
+    <param name="output_frame_id" type="str"    value="camera_depth_frame"/>
+    <param name="use_inf"         type="bool"   value="true"/>
+    <param name="inf_epsilon"     type="double" value="1.0"/>
+  </node>
+
+  <arg name="model" default="$(find autonomus_mobile_robot)/urdf/mobile_robot.urdf.xacro"/>
+  <param name="robot_description" command="$(find xacro)/xacro $(arg model)" />
+  <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher"/>
+  <node name="joint_state_publisher_gui" pkg="joint_state_publisher_gui" type="joint_state_publisher_gui"/>
+  <node name="rviz" pkg="rviz" type="rviz" args="-d $(find autonomus_mobile_robot)/config/amcl_nav.rviz"/>
+
+  <node pkg="tf" type="static_transform_publisher" name="camera_optical"
+        args="0 0 0.83 0 0 0 base_link camera_link 100" />
+
+  <group ns="rtabmap">
+    <node pkg="nodelet" type="nodelet" name="rgbd_sync" args="standalone rtabmap_sync/rgbd_sync" output="screen" respawn="true">
+      <remap from="rgb/image"       to="/camera/rgb/image_rect_color"/>
+      <remap from="depth/image"     to="/camera/depth_registered/image_raw"/>
+      <remap from="rgb/camera_info" to="/camera/rgb/camera_info"/>
+      <remap from="rgbd_image"      to="rgbd_image"/>
+      <param name="approx_sync" value="true"/>
+      <param name="approx_sync_max_interval" value="0.1"/>
+      <param name="queue_size" value="100"/> </node>
+
+    <node pkg="rtabmap_odom" type="rgbd_odometry" name="rgbd_odometry" output="screen" respawn="true">
+      <param name="frame_id" value="base_link"/>
+      <param name="odom_frame_id" value="odom_vo"/> <param name="max_depth" value="4.0"/>
+      <param name="icp_odometry" value="true"/>
+      <param name="approx_sync" value="true"/>
+      <param name="Reg/Strategy" value="0"/>
+      <remap from="rgb/image"       to="/camera/rgb/image_rect_color"/>
+      <remap from="depth/image"     to="/camera/depth_registered/image_raw"/>
+      <remap from="rgb/camera_info" to="/camera/rgb/camera_info"/>
+      <remap from="odom" to="/vo_raw"/> </node>
+  </group>
+
+  <node pkg="my_robot_pkg" type="vo_filter.py" name="vo_filter" output="screen" respawn="true">
+    <remap from="~vo_in" to="/vo_raw"/>
+    <remap from="~vo_out" to="/vo_filtered"/>
+    <param name="max_age" value="1.0"/> </node>
+
+  <node pkg="rosserial_python" type="serial_node.py" name="serial_node" output="screen" respawn="true">
+    <param name="port" value="/dev/ttyUSB1"/> <param name="baud" value="115200"/>
+  </node>
+
+  <node pkg="my_robot_pkg" type="ekf_odom_pub" name="ekf_odom_pub"/>
+
+  <param name="vo_used" value="true"/>
+    <param name="debug" value="false"/>
+    <param name="self_diagnose" value="false"/>
+    <remap from="odom"     to="/odom_data_quat"/>
+    <remap from="vo"       to="/vo_filtered"/>
+    <!- <remap from="imu_data" to="/imu/data"/> -->
+  </node>
+  -->
+
+  <group ns="rtabmap">
+    <node name="rtabmap" pkg="rtabmap_slam" type="rtabmap" output="screen" args="--delete_db_on_start" respawn="true">
+      <param name="frame_id"         value="base_link"/>
+      <param name="map_frame_id"     value="map"/>
+      <param name="subscribe_depth"  value="false"/>
+      <param name="subscribe_rgbd"   value="true"/> <param name="subscribe_scan"   value="true"/> <remap from="odom"       to="/vo_filtered"/>
+      <remap from="scan"       to="/scan"/>
+      <remap from="rgbd_image" to="/rtabmap/rgbd_image"/>
+
+      <remap from="grid_map" to="/map"/>
+
+      <param name="Vis/LoopClosureEnabled" value="true"/>
+      <param name="Grid/FromDepth"         value="false"/>
+      <param name="Grid/RangeMax"          value="4.5"/>
+      <param name="Grid/CellSize"          value="0.05"/>
+
+      <param name="RGBD/ProximityBySpace"     value="true"/>
+      <param name="RGBD/LocalProximityMaxDist" value="1.0"/>
+      <param name="Reg/Strategy"              value="1"/>  <param name="Vis/MinInliers"            value="15"/>
+      <param name="Vis/MaxFeatures"           value="600"/>
+      <param name="Kp/MaxFeatures"            value="200"/>
+
+      <param name="Mem/IncrementalMemory"   value="true"/>
+      <param name="Mem/InitWMWithAllNodes"  value="true"/>
+      <param name="Mem/ReduceGraph"         value="false"/>
+    </node>
+  </group>
+
+  <node pkg="my_robot_pkg" type="rviz_click_to_2d" name="rviz_click_to_2d"/>
+
+  <node pkg="my_robot_pkg" type="mapping_autoresume.py" name="mapping_autoresume" output="screen" respawn="true">
+    <param name="freeze_secs" value="10.0"/>
+    <param name="resume_secs" value="15.0"/>
+  </node>
+
+</launch>
